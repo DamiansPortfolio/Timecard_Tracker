@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8EC38B322CB0AA80000C94FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B312CB0AA80000C94FB /* ContentView.swift */; };
+		8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B332CB0AA82000C94FB /* Assets.xcassets */; };
+		8EC38B372CB0AA82000C94FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */; };
+		8EC38B452CB0AB84000C94FB /* TimecardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B442CB0AB84000C94FB /* TimecardListView.swift */; };
+		8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */; };
+		8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B482CB0ABCC000C94FB /* Timecard.swift */; };
+		8EC38B4B2CB0ABF8000C94FB /* TimecardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B4A2CB0ABF8000C94FB /* TimecardApp.swift */; };
+		8EC38B4D2CB0AD01000C94FB /* JobCodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B4C2CB0AD01000C94FB /* JobCodeListView.swift */; };
+		8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */; };
+		8EC38B512CB0AD41000C94FB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B502CB0AD41000C94FB /* ProfileView.swift */; };
+		8EC38B552CB0ADA3000C94FB /* TimecardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B542CB0ADA3000C94FB /* TimecardDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8EC38B2C2CB0AA80000C94FB /* TimecardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimecardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EC38B312CB0AA80000C94FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8EC38B332CB0AA82000C94FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8EC38B442CB0AB84000C94FB /* TimecardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardListView.swift; sourceTree = "<group>"; };
+		8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardListViewModel.swift; sourceTree = "<group>"; };
+		8EC38B482CB0ABCC000C94FB /* Timecard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timecard.swift; sourceTree = "<group>"; };
+		8EC38B4A2CB0ABF8000C94FB /* TimecardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardApp.swift; sourceTree = "<group>"; };
+		8EC38B4C2CB0AD01000C94FB /* JobCodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCodeListView.swift; sourceTree = "<group>"; };
+		8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCodeListViewModel.swift; sourceTree = "<group>"; };
+		8EC38B502CB0AD41000C94FB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		8EC38B542CB0ADA3000C94FB /* TimecardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardDetailView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EC38B292CB0AA80000C94FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8EC38B232CB0AA80000C94FB = {
+			isa = PBXGroup;
+			children = (
+				8EC38B2E2CB0AA80000C94FB /* TimecardApp */,
+				8EC38B2D2CB0AA80000C94FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8EC38B2D2CB0AA80000C94FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8EC38B2C2CB0AA80000C94FB /* TimecardApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EC38B2E2CB0AA80000C94FB /* TimecardApp */ = {
+			isa = PBXGroup;
+			children = (
+				8EC38B3F2CB0AA9C000C94FB /* Models */,
+				8EC38B3E2CB0AA96000C94FB /* Views */,
+				8EC38B402CB0AAA7000C94FB /* ViewModels */,
+				8EC38B412CB0AAAC000C94FB /* Services */,
+				8EC38B332CB0AA82000C94FB /* Assets.xcassets */,
+				8EC38B352CB0AA82000C94FB /* Preview Content */,
+			);
+			path = TimecardApp;
+			sourceTree = "<group>";
+		};
+		8EC38B352CB0AA82000C94FB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8EC38B3E2CB0AA96000C94FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8EC38B4A2CB0ABF8000C94FB /* TimecardApp.swift */,
+				8EC38B312CB0AA80000C94FB /* ContentView.swift */,
+				8EC38B442CB0AB84000C94FB /* TimecardListView.swift */,
+				8EC38B4C2CB0AD01000C94FB /* JobCodeListView.swift */,
+				8EC38B502CB0AD41000C94FB /* ProfileView.swift */,
+				8EC38B542CB0ADA3000C94FB /* TimecardDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8EC38B3F2CB0AA9C000C94FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8EC38B482CB0ABCC000C94FB /* Timecard.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8EC38B402CB0AAA7000C94FB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */,
+				8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8EC38B412CB0AAAC000C94FB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8EC38B2B2CB0AA80000C94FB /* TimecardApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EC38B3A2CB0AA82000C94FB /* Build configuration list for PBXNativeTarget "TimecardApp" */;
+			buildPhases = (
+				8EC38B282CB0AA80000C94FB /* Sources */,
+				8EC38B292CB0AA80000C94FB /* Frameworks */,
+				8EC38B2A2CB0AA80000C94FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimecardApp;
+			productName = TimecardApp;
+			productReference = 8EC38B2C2CB0AA80000C94FB /* TimecardApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8EC38B242CB0AA80000C94FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					8EC38B2B2CB0AA80000C94FB = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 8EC38B272CB0AA80000C94FB /* Build configuration list for PBXProject "TimecardApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8EC38B232CB0AA80000C94FB;
+			productRefGroup = 8EC38B2D2CB0AA80000C94FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8EC38B2B2CB0AA80000C94FB /* TimecardApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8EC38B2A2CB0AA80000C94FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EC38B372CB0AA82000C94FB /* Preview Assets.xcassets in Resources */,
+				8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8EC38B282CB0AA80000C94FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EC38B512CB0AD41000C94FB /* ProfileView.swift in Sources */,
+				8EC38B452CB0AB84000C94FB /* TimecardListView.swift in Sources */,
+				8EC38B4D2CB0AD01000C94FB /* JobCodeListView.swift in Sources */,
+				8EC38B552CB0ADA3000C94FB /* TimecardDetailView.swift in Sources */,
+				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
+				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,
+				8EC38B322CB0AA80000C94FB /* ContentView.swift in Sources */,
+				8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */,
+				8EC38B4B2CB0ABF8000C94FB /* TimecardApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8EC38B382CB0AA82000C94FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8EC38B392CB0AA82000C94FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8EC38B3B2CB0AA82000C94FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
+				DEVELOPMENT_TEAM = XK9LMS6NY2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timecardApp.TimecardApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8EC38B3C2CB0AA82000C94FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
+				DEVELOPMENT_TEAM = XK9LMS6NY2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timecardApp.TimecardApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EC38B272CB0AA80000C94FB /* Build configuration list for PBXProject "TimecardApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EC38B382CB0AA82000C94FB /* Debug */,
+				8EC38B392CB0AA82000C94FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EC38B3A2CB0AA82000C94FB /* Build configuration list for PBXNativeTarget "TimecardApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EC38B3B2CB0AA82000C94FB /* Debug */,
+				8EC38B3C2CB0AA82000C94FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8EC38B242CB0AA80000C94FB /* Project object */;
+}
