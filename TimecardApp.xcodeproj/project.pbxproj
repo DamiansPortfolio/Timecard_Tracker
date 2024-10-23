@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		065560F02CC9A1F8003A441F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560EF2CC9A1F3003A441F /* LoginView.swift */; };
+		065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560F12CC9A21C003A441F /* LoginViewModel.swift */; };
 		8EC38B322CB0AA80000C94FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B312CB0AA80000C94FB /* ContentView.swift */; };
 		8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B332CB0AA82000C94FB /* Assets.xcassets */; };
 		8EC38B372CB0AA82000C94FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		065560EF2CC9A1F3003A441F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		065560F12CC9A21C003A441F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8EC38B2C2CB0AA80000C94FB /* TimecardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimecardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC38B312CB0AA80000C94FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EC38B332CB0AA82000C94FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		8EC38B3E2CB0AA96000C94FB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				065560EF2CC9A1F3003A441F /* LoginView.swift */,
 				8EC38B4A2CB0ABF8000C94FB /* TimecardApp.swift */,
 				8EC38B312CB0AA80000C94FB /* ContentView.swift */,
 				8EC38B442CB0AB84000C94FB /* TimecardListView.swift */,
@@ -107,6 +112,7 @@
 		8EC38B402CB0AAA7000C94FB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				065560F12CC9A21C003A441F /* LoginViewModel.swift */,
 				8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */,
 				8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */,
 			);
@@ -192,12 +198,14 @@
 			files = (
 				8EC38B512CB0AD41000C94FB /* ProfileView.swift in Sources */,
 				8EC38B452CB0AB84000C94FB /* TimecardListView.swift in Sources */,
+				065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */,
 				8EC38B4D2CB0AD01000C94FB /* JobCodeListView.swift in Sources */,
 				8EC38B552CB0ADA3000C94FB /* TimecardDetailView.swift in Sources */,
 				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
 				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,
 				8EC38B322CB0AA80000C94FB /* ContentView.swift in Sources */,
 				8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */,
+				065560F02CC9A1F8003A441F /* LoginView.swift in Sources */,
 				8EC38B4B2CB0ABF8000C94FB /* TimecardApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
