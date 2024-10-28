@@ -7,9 +7,6 @@ struct TimecardListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Timecards")
-                    .font(.largeTitle)
-                    .bold()
                 List {
                     ForEach(viewModel.filteredTimecards) { timecard in
                         NavigationLink(destination: TimecardDetailView(timecard: timecard)) {
@@ -20,11 +17,12 @@ struct TimecardListView: View {
                 }
                 .listStyle(.inset)
                 .cornerRadius(15)
-                .padding([.trailing, .leading, .bottom], 40)
-
+                .padding(40)
+                
                 
             }
-            .background(Color.teal.opacity(0.2))
+            .navigationTitle("Timecards")
+            .background(Color.teal.opacity(0.3))
             .toolbar {
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -68,7 +66,8 @@ struct TimecardListView: View {
                         viewModel.addNewTimecard(date: Date(), totalHours: 8.0, status: .draft)
                     }) {
                         Text("Add")
-                            .bold()                            .foregroundColor(.white)
+                            .bold()
+                            .foregroundColor(.white)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.teal)
@@ -87,7 +86,7 @@ struct TimecardListView: View {
 
 struct TimecardRowView: View {
     let timecard: Timecard
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(timecard.date, style: .date)
@@ -104,7 +103,7 @@ struct TimecardRowView: View {
             }
         }
     }
-
+    
     private func statusColor(for status: TimecardStatus) -> Color {
         switch status {
         case .draft: return .gray
@@ -121,3 +120,5 @@ struct TimecardListView_Previews: PreviewProvider {
         TimecardListView()
     }
 }
+
+// Instead of Delete, do Move to archive, but only for Approved timecard

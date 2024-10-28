@@ -7,10 +7,6 @@ struct JobCodeListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Job Codes")
-                    .font(.largeTitle)
-                    .padding()
-                    .bold()
                 
                 HStack {
                     TextField("Search", text: $searchText)
@@ -56,7 +52,8 @@ struct JobCodeListView: View {
                         .presentationDetents([.medium]) // Make the sheet take up half the screen
                 }
             }
-            .background(Color.teal.opacity(0.2))
+            .navigationTitle("Job Codes")
+            .background(Color.teal.opacity(0.3))
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Menu {
