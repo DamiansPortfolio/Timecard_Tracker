@@ -2,102 +2,139 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
+    @State private var isEditingProfile = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.teal)
-                    .padding(.bottom, 20)
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "person.fill")
-                            .foregroundColor(.teal)
-                        Text("Username:")
-                            .bold()
-                            .foregroundColor(.teal)
-                        Text("\(viewModel.username)")
-                    }
+            ScrollView {
+                VStack(spacing: 20) {
                     
-                    HStack {
-                        Image(systemName: "envelope.fill")
-                            .foregroundColor(.teal)
-                        Text("Email:")
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(.teal)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack{
+                            Text("Information")
+                                .font(.title)
+                                .bold()
+                                .foregroundColor(.teal)
+                            Spacer()
+                            Button("Edit") {
+                                isEditingProfile.toggle()
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.teal)
                             .bold()
-                            .foregroundColor(.teal)
-                        Text("\(viewModel.email)")
-                    }
 
-                    HStack {
-                        Image(systemName: "macwindow")
-                            .foregroundColor(.teal)
-                        Text("Title:")
-                            .bold()
-                            .foregroundColor(.teal)
-                        Text(viewModel.title)
+                        }
+                        ProfileInfoRow(label: "Username:", value: viewModel.username)
+                        ProfileInfoRow(label: "Email:", value: viewModel.email)
+                        ProfileInfoRow(label: "Phone:", value: viewModel.phone)
+                        ProfileInfoRow(label: "Emergency Contact:", value: viewModel.emergencyContact)
                     }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
                     
-                    HStack {
-                        Image(systemName: "building.columns.fill")
-                            .foregroundColor(.teal)
-                        Text("Branch:")
-                            .bold()
-                            .foregroundColor(.teal)
-                        Text(viewModel.branch)
+
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack{
+                            Text("Summary")
+                                .font(.title)
+                                .bold()
+                                .foregroundColor(.teal)
+                            Spacer()
+                        }
+                        ProfileInfoRow(label: "Title:", value: viewModel.latestPosition)
+                        ProfileInfoRow(label: "Branch:", value: viewModel.branch)
+                        ProfileInfoRow(label: "Department:", value: viewModel.department)
+                        ProfileInfoRow(label: "Hours Worked This Month:", value: "\(viewModel.monthlyHours)")
                     }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
                     
-                    HStack {
-                        Image(systemName: "number.circle.fill")
+                    // Settings Section
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Settings")
+                            .font(.headline)
                             .foregroundColor(.teal)
-                        Text("Department:")
-                            .bold()
-                            .foregroundColor(.teal)
-                        Text(viewModel.department)
+                        Toggle(isOn: $viewModel.notificationsEnabled) {
+                            Text("Enable Notifications")
+                        }
+                        .toggleStyle(SwitchToggleStyle(tint: .teal))
+                        
+                        Button("Change Password") {
+                            viewModel.changePassword()
+                        }
+                        .foregroundColor(.blue)
                     }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
+                    
+                    // Feedback or Support Section
+                    VStack {
+                        Button("Contact Support") {
+                            viewModel.contactSupport()
+                        }
+                        .foregroundColor(.blue)
+                    }
+                    .padding(.top, 10)
+                    
+                    // Log Out Button
+                    Button(action: {
+                        viewModel.logOut()
+                    }) {
+                        Text("Log Out")
+                            .foregroundColor(.white)
+
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.red)
+                    
                 }
                 .padding()
-                .background(Color.white)
-                .cornerRadius(15)
-
-                Button(action: {
-                    // Log out action
-                }) {
-                    Text("Log Out")
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.red)
-                .padding(.top) // Optional: Add some space above the button
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // Make the VStack fill the available space
-            .background(Color.teal.opacity(0.3)) // Set the background color to teal
+            .background(Color.teal.opacity(0.2))
             .navigationTitle("Profile")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: EditProfileView(viewModel: viewModel)) {
-                        Text("Edit")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 13)
-                            .padding(.vertical, 8)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(.teal)
-                            )
-                    }
-                }
+            .sheet(isPresented: $isEditingProfile) {
+                EditProfileView(viewModel: viewModel)
             }
         }
     }
 }
 
-// Preview
+// ProfileInfoRow for reusable info layout
+struct ProfileInfoRow: View {
+    var label: String
+    var value: String
+    
+    var body: some View {
+        HStack {
+            Text(label)
+                .fontWeight(.bold)
+                .foregroundColor(.teal)
+            Text(value)
+        }
+    }
+}
+
+// Sample Edit Profile View
+struct EditProfileView: View {
+    @ObservedObject var viewModel: ProfileViewModel
+    
+    var body: some View {
+        Text("Edit Profile View") // Customize further as needed
+    }
+}
+
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
