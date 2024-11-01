@@ -16,7 +16,7 @@ struct ProfileView: View {
                         .foregroundColor(.teal)
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        HStack{
+                        HStack {
                             Text("Information")
                                 .font(.title)
                                 .bold()
@@ -28,7 +28,6 @@ struct ProfileView: View {
                             .buttonStyle(.bordered)
                             .tint(.teal)
                             .bold()
-
                         }
                         ProfileInfoRow(label: "Username:", value: viewModel.username)
                         ProfileInfoRow(label: "Email:", value: viewModel.email)
@@ -39,10 +38,9 @@ struct ProfileView: View {
                     .background(Color.white)
                     .cornerRadius(15)
                     .shadow(radius: 5)
-                    
 
                     VStack(alignment: .leading, spacing: 10) {
-                        HStack{
+                        HStack {
                             Text("Summary")
                                 .font(.title)
                                 .bold()
@@ -59,11 +57,32 @@ struct ProfileView: View {
                     .cornerRadius(15)
                     .shadow(radius: 5)
                     
+                    // Documents Section with NavigationLink
+                    VStack(alignment: .leading, spacing: 10) {
+                        NavigationLink(destination: DocumentsView()) {
+                            HStack {
+                                Text("Documents")
+                                    .font(.title)
+                                    .bold()
+                                    .foregroundColor(.teal)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.teal)
+                            }
+                        }
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
+                    
                     // Settings Section
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Settings")
-                            .font(.headline)
+                            .font(.title)
+                            .bold()
                             .foregroundColor(.teal)
+                        
                         Toggle(isOn: $viewModel.notificationsEnabled) {
                             Text("Enable Notifications")
                         }
@@ -94,11 +113,9 @@ struct ProfileView: View {
                     }) {
                         Text("Log Out")
                             .foregroundColor(.white)
-
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.red)
-                    
                 }
                 .padding()
             }
@@ -111,7 +128,6 @@ struct ProfileView: View {
     }
 }
 
-// ProfileInfoRow for reusable info layout
 struct ProfileInfoRow: View {
     var label: String
     var value: String
@@ -126,7 +142,6 @@ struct ProfileInfoRow: View {
     }
 }
 
-// Sample Edit Profile View
 struct EditProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel
     

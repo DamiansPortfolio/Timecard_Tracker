@@ -13,6 +13,7 @@
 		065560FE2CCB2442003A441F /* JobCodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FD2CCB243B003A441F /* JobCodeDetailView.swift */; };
 		065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FF2CCD75B8003A441F /* ProfileViewModel.swift */; };
 		065561022CCD75CA003A441F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065561012CCD75CA003A441F /* Profile.swift */; };
+		06FB23BF2CD57F0A00F30DD7 /* DocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FB23BE2CD57F0A00F30DD7 /* DocumentsView.swift */; };
 		8EC38B322CB0AA80000C94FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B312CB0AA80000C94FB /* ContentView.swift */; };
 		8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B332CB0AA82000C94FB /* Assets.xcassets */; };
 		8EC38B372CB0AA82000C94FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */; };
@@ -23,7 +24,6 @@
 		8EC38B4D2CB0AD01000C94FB /* JobCodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B4C2CB0AD01000C94FB /* JobCodeListView.swift */; };
 		8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */; };
 		8EC38B512CB0AD41000C94FB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B502CB0AD41000C94FB /* ProfileView.swift */; };
-		8EC38B552CB0ADA3000C94FB /* TimecardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B542CB0ADA3000C94FB /* TimecardDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +33,7 @@
 		065560FD2CCB243B003A441F /* JobCodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCodeDetailView.swift; sourceTree = "<group>"; };
 		065560FF2CCD75B8003A441F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		065561012CCD75CA003A441F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		06FB23BE2CD57F0A00F30DD7 /* DocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsView.swift; sourceTree = "<group>"; };
 		8EC38B2C2CB0AA80000C94FB /* TimecardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimecardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC38B312CB0AA80000C94FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EC38B332CB0AA82000C94FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		8EC38B4C2CB0AD01000C94FB /* JobCodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCodeListView.swift; sourceTree = "<group>"; };
 		8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCodeListViewModel.swift; sourceTree = "<group>"; };
 		8EC38B502CB0AD41000C94FB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		8EC38B542CB0ADA3000C94FB /* TimecardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,13 +98,13 @@
 		8EC38B3E2CB0AA96000C94FB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				06FB23BE2CD57F0A00F30DD7 /* DocumentsView.swift */,
 				065560FD2CCB243B003A441F /* JobCodeDetailView.swift */,
 				065560EF2CC9A1F3003A441F /* LoginView.swift */,
 				8EC38B312CB0AA80000C94FB /* ContentView.swift */,
 				8EC38B442CB0AB84000C94FB /* TimecardListView.swift */,
 				8EC38B4C2CB0AD01000C94FB /* JobCodeListView.swift */,
 				8EC38B502CB0AD41000C94FB /* ProfileView.swift */,
-				8EC38B542CB0ADA3000C94FB /* TimecardDetailView.swift */,
 				8EC38B4A2CB0ABF8000C94FB /* TimecardApp.swift */,
 			);
 			path = Views;
@@ -214,11 +214,11 @@
 				065560FC2CCB23CD003A441F /* JobCode.swift in Sources */,
 				065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */,
 				8EC38B4D2CB0AD01000C94FB /* JobCodeListView.swift in Sources */,
-				8EC38B552CB0ADA3000C94FB /* TimecardDetailView.swift in Sources */,
 				065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */,
 				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
 				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,
 				8EC38B322CB0AA80000C94FB /* ContentView.swift in Sources */,
+				06FB23BF2CD57F0A00F30DD7 /* DocumentsView.swift in Sources */,
 				065560FE2CCB2442003A441F /* JobCodeDetailView.swift in Sources */,
 				8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */,
 				065560F02CC9A1F8003A441F /* LoginView.swift in Sources */,
