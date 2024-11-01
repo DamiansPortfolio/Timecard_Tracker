@@ -50,12 +50,6 @@ class TimecardListViewModel: ObservableObject {
         timecards.removeAll { $0.id == timecard.id }
         filterByStatus(currentFilter) // Reapply filter after deletion
     }
-    
-    // MARK: - Adding New Timecard
 
-    func addNewTimecard(date: Date, totalHours: Double, status: TimecardStatus) {
-        let newTimecard = Timecard(id: UUID(), date: date, totalHours: totalHours, status: status)
-        timecards.append(newTimecard)
-        filterByStatus(currentFilter) // Reapply filter to include the new timecard
-    }
+
 }

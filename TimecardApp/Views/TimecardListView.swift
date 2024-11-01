@@ -3,6 +3,8 @@ import SwiftUI
 
 struct TimecardListView: View {
     @StateObject private var viewModel = TimecardListViewModel()
+    @State private var showAddTimecardSheet = false // State variable for the sheet
+    
     
     var body: some View {
         NavigationView {
@@ -63,16 +65,20 @@ struct TimecardListView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        viewModel.addNewTimecard(date: Date(), totalHours: 8.0, status: .draft)
+                        showAddTimecardSheet.toggle() // Present the sheet
                     }) {
                         Text("Add")
                             .bold()
                             .foregroundColor(.white)
                     }
+                    .sheet(isPresented: $showAddTimecardSheet) {
+                        AddTimecardView()
+                    }
                     .buttonStyle(.borderedProminent)
                     .tint(.teal)
                 }
             }
+            
         }
     }
     
@@ -94,10 +100,10 @@ struct TimecardRowView: View {
             Text("Hours: \(timecard.totalHours, specifier: "%.2f")")
                 .font(.subheadline)
             HStack {
-                Text("Status:") // Label for status
+                Text("Status:")
                     .font(.subheadline)
-                    .foregroundColor(.black) // Standard black color
-                Text(timecard.status.rawValue.capitalized) // Status value
+                    .foregroundColor(.black)
+                Text(timecard.status.rawValue.capitalized) 
                     .font(.subheadline)
                     .foregroundColor(statusColor(for: timecard.status))
             }
@@ -139,7 +145,7 @@ struct TimecardDetailView: View {
 }
 
 #Preview {
-        TimecardListView()
+    TimecardListView()
 }
 
 // Instead of Delete, do Move to archive, but only for Approved timecard
