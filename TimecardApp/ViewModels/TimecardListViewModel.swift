@@ -20,6 +20,13 @@ class TimecardListViewModel: ObservableObject {
         filteredTimecards = timecards
     }
     
+    // MARK: - Adding
+
+    func addTimecard(_ timecard: Timecard) {
+        timecards.append(timecard)
+        filterByStatus(currentFilter) // Reapply filter after adding
+    }
+    
     // MARK: - Sorting
 
     func sortByDate() {

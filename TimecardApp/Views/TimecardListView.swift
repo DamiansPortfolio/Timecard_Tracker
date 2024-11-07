@@ -72,7 +72,7 @@ struct TimecardListView: View {
                             .foregroundColor(.white)
                     }
                     .sheet(isPresented: $showAddTimecardSheet) {
-                        AddTimecardView()
+                        AddTimecardView(viewModel: viewModel)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.teal)
@@ -148,4 +148,3 @@ struct TimecardDetailView: View {
     TimecardListView()
 }
 
-// Instead of Delete, do Move to archive, but only for Approved timecard

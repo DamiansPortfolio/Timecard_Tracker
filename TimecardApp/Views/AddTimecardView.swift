@@ -10,6 +10,8 @@ struct AddTimecardView: View {
     @State private var startTime = Date()
     @State private var endTime = Date()
     @State private var breakDuration: Double = 0.0
+    @ObservedObject var viewModel: TimecardListViewModel
+
     
     var body: some View {
         NavigationView {
@@ -42,8 +44,15 @@ struct AddTimecardView: View {
                 
                 
                 Button("Confirm") {
-                    dismiss()
-                }
+                    let newTimecard = Timecard(
+                                            id: UUID(),
+                                            date: date,
+                                            totalHours: calculateTotalHours(),
+                                            status: .draft // Default status can be .draft or another status
+                                        )
+                                        viewModel.addTimecard(newTimecard) // Add the new timecard to the viewModel
+                                        dismiss()
+                                    }
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
@@ -66,5 +75,5 @@ struct AddTimecardView: View {
 }
 
 #Preview {
-    AddTimecardView()
+    AddTimecardView(viewModel: TimecardListViewModel())
 }
