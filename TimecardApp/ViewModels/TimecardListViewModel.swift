@@ -182,7 +182,12 @@ class TimecardListViewModel: ObservableObject {
         }
     }
     
-    func sortByDate() {
+    func sortByDateDescending() {
+        
+        filteredTimecards.sort { $0.date < $1.date }
+    }
+    func sortByDateAscending() {
+        
         filteredTimecards.sort { $0.date > $1.date }
     }
     
