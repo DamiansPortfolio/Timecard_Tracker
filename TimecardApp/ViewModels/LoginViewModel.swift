@@ -1,22 +1,65 @@
-import Foundation
+import SwiftUI
+import FirebaseFirestore
 
 class LoginViewModel: ObservableObject {
-    @Published var email = ""
-    @Published var password = ""
-    @Published var isAuthenticated = false
-    @Published var showPassword = false
-
+    @Published var email: String = ""
+    @Published var password: String = ""
+    @Published var showPassword: Bool = false
+    @Published var isLoading: Bool = false
+    @Published var errorMessage: String = ""
+    @Published var isAuthenticated: Bool = false
+    
+    private let db = Firestore.firestore()
+    
     var isLoginDisabled: Bool {
-        email.isEmpty || password.isEmpty
+        email.isEmpty || password.isEmpty || isLoading
     }
-
+    
     func login() {
-        // Perform authentication (this is just a placeholder)
-        if email == "test@example.com" && password == "password123" {
-            isAuthenticated = true
-        } else {
-            // Handle login failure, e.g., show an error message
-            isAuthenticated = false
+        guard !email.isEmpty && !password.isEmpty else {
+            errorMessage = "Please enter both email and password"
+            return
         }
+        
+        isLoading = true
+        errorMessage = ""
+        
+        // Query Firestore for user with matching email and password
+        db.collection("users")
+            .whereField("email", isEqualTo: email)
+            .whereField("password", isEqualTo: password) // Note: This is for simulation only
+            .getDocuments { [weak self] (querySnapshot, error) in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    
+                    if let error = error {
+                        self.errorMessage = "Login failed: \(error.localizedDescription)"
+                        return
+                    }
+                    
+                    guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                        self.errorMessage = "Invalid email or password"
+                        return
+                    }
+                    
+                    // Use the first matching document
+                    let userData = documents[0]
+                    let userId = userData.documentID
+                    
+                    // Store user data in UserDefaults
+                    UserDefaults.standard.set(userData["email"] as? String ?? "", forKey: "userEmail")
+                    UserDefaults.standard.set(userData["fname"] as? String ?? "", forKey: "userName")
+                    UserDefaults.standard.set(userId, forKey: "userId")
+                    
+                    // Set authenticated to true to trigger navigation
+                    self.isAuthenticated = true
+                }
+            }
+    }
+    
+    private func handleLoginError(_ error: Error) {
+        errorMessage = "Login failed: \(error.localizedDescription)"
     }
 }

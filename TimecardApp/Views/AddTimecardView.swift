@@ -1,32 +1,53 @@
 import SwiftUI
+import FirebaseFirestore
 
 struct AddTimecardView: View {
     @Environment(\.dismiss) var dismiss
-    
-    // Fields for the timecard
-    @State private var employeeName: String = ""
-    @State private var jobCode: String = ""
-    @State private var date = Date()
-    @State private var startTime = Date()
-    @State private var endTime = Date()
-    @State private var breakDuration: Double = 0.0
     @ObservedObject var viewModel: TimecardListViewModel
-
+    @State private var showError = false
+    @State private var showSuccess = false
+    @State private var showJobCodePicker = false
+    
+    @State private var selectedJobCode: JobCode = .development
+    @State private var date = Date()
+    @State private var startHour: Hour = .h9am
+    @State private var endHour: Hour = .h5pm
+    @State private var breakDuration: Double = 0.0
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Employee Details")) {
-                    TextField("Employee Name", text: $employeeName)
-                    TextField("Job Code", text: $jobCode)
+                Section(header: Text("Job Information")) {
+                    Button(action: { showJobCodePicker = true }) {
+                        HStack {
+                            Text("Job Code")
+                            Spacer()
+                            VStack(alignment: .trailing) {
+                                Text(selectedJobCode.description)
+                                    .foregroundColor(.gray)
+                                Text(selectedJobCode.rawValue)
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
                 }
                 
                 Section(header: Text("Date and Time")) {
                     DatePicker("Date", selection: $date, displayedComponents: .date)
                         .datePickerStyle(GraphicalDatePickerStyle())
                     
-                    DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
-                    DatePicker("End Time", selection: $endTime, displayedComponents: .hourAndMinute)
+                    Picker("Start Time", selection: $startHour) {
+                        ForEach(Hour.allCases) { hour in
+                            Text(hour.display).tag(hour)
+                        }
+                    }
+                    
+                    Picker("End Time", selection: $endHour) {
+                        ForEach(Hour.allCases) { hour in
+                            Text(hour.display).tag(hour)
+                        }
+                    }
                     
                     HStack {
                         Text("Break Duration (hours)")
@@ -38,42 +59,105 @@ struct AddTimecardView: View {
                 }
                 
                 Section(header: Text("Total Hours")) {
-                    Text("\(calculateTotalHours(), specifier: "%.2f") hours")
+                    Text(String(format: "%.2f hours", calculateTotalHours()))
                 }
                 
-                
-                
-                Button("Confirm") {
-                    let newTimecard = Timecard(
-                                            id: UUID(),
-                                            date: date,
-                                            totalHours: calculateTotalHours(),
-                                            status: .draft // Default status can be .draft or another status
-                                        )
-                                        viewModel.addTimecard(newTimecard) // Add the new timecard to the viewModel
-                                        dismiss()
-                                    }
+                Button("Submit") {
+                    submitTimecard()
+                }
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .center)
+                .disabled(viewModel.isLoading || !isValidInput())
             }
             .navigationTitle("Add Timecard")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Cancel") {
-                        dismiss()
+                    Button("Cancel") { dismiss() }
+                }
+            }
+            .sheet(isPresented: $showJobCodePicker) {
+                NavigationView {
+                    List(JobCode.allCases, id: \.self) { code in
+                        Button(action: {
+                            selectedJobCode = code
+                            showJobCodePicker = false
+                        }) {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(code.description)
+                                    Text(code.rawValue)
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                                Spacer()
+                                if selectedJobCode == code {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                        }
                     }
+                    .navigationTitle("Select Job Code")
+                    .toolbar {
+                        Button("Done") {
+                            showJobCodePicker = false
+                        }
+                    }
+                }
+            }
+            .alert("Success", isPresented: $showSuccess) {
+                Button("OK") { dismiss() }
+            } message: {
+                Text("Timecard has been successfully created")
+            }
+            .overlay {
+                if viewModel.isLoading {
+                    ProgressView()
+                        .scaleEffect(1.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.1))
                 }
             }
         }
     }
     
-    // Calculate total hours based on start, end time, and break duration
-    func calculateTotalHours() -> Double {
-        let workedHours = endTime.timeIntervalSince(startTime) / 3600 // Convert seconds to hours
-        return max(0, workedHours - breakDuration) // Subtract break duration, ensuring non-negative
+    private func isValidInput() -> Bool {
+        calculateTotalHours() > 0
     }
-}
-
-#Preview {
-    AddTimecardView(viewModel: TimecardListViewModel())
+    
+    private func calculateTotalHours() -> Double {
+        let startValue = startHour.rawValue
+        let endValue = endHour.rawValue
+        
+        var hours: Double
+        if endValue >= startValue {
+            hours = Double(endValue - startValue)
+        } else {
+            hours = Double(24 - startValue + endValue)
+        }
+        
+        return max(0, hours - breakDuration)
+    }
+    
+    private func getDateWithHour(_ hour: Hour) -> Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year, .month, .day], from: date)
+        components.hour = hour.rawValue
+        components.minute = 0
+        return calendar.date(from: components) ?? date
+    }
+    
+    private func submitTimecard() {
+        let startTime = getDateWithHour(startHour)
+        let endTime = getDateWithHour(endHour)
+        
+        viewModel.addTimecard(
+            jobCode: selectedJobCode.rawValue,
+            date: date,
+            startTime: startTime,
+            endTime: endTime,
+            breakDuration: breakDuration
+        )
+        showSuccess = true
+    }
 }

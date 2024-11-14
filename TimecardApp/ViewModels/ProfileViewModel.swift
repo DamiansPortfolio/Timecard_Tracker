@@ -1,30 +1,198 @@
+    // ProfileViewModel.swift
 import Foundation
+import FirebaseFirestore
 
 class ProfileViewModel: ObservableObject {
-    // Basic info and contact
-    @Published var username: String = "Damian Rozycki"
-    @Published var email: String = "damian@example.com"
-    @Published var phone: String = "(123) 456-7890"
-    @Published var emergencyContact: String = "(987) 654-3210"
+        // Existing properties
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
+    @Published var middleName: String = ""
+    @Published var title: String = ""
+    @Published var username: String = ""
+    @Published var email: String = ""
+    @Published var phone: String = ""
+    @Published var branch: String = ""
+    @Published var department: String = ""
+    @Published var location: String = ""
+    @Published var isLoading: Bool = false
+    @Published var errorMessage: String?
+    @Published var isLoggedOut: Bool = false
     
-    // Work details
-    @Published var latestPosition: String = "Software Engineer"
-    @Published var branch: String = "San Francisco"
-    @Published var department: String = "Engineering"
-    @Published var monthlyHours: Int = 160
+        // New password-related properties
+    @Published var showPasswordError = false
+    @Published var showPasswordSuccess = false
+    @Published var passwordErrorMessage: String?
     
-    // Settings
-    @Published var notificationsEnabled: Bool = true
+    private let db = Firestore.firestore()
     
-    func changePassword() {
-        // Code for password change flow
-    }
-    
-    func contactSupport() {
-        // Code to open support email or chat
+    init() {
+        fetchUser()
     }
     
     func logOut() {
-        // Code to handle logout action
+            // Clear UserDefaults
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        UserDefaults.standard.removeObject(forKey: "userName")
+        UserDefaults.standard.removeObject(forKey: "userId")
+        
+            // Clear local user data
+        clearUserData()
+        
+            // Set logged out state to true
+        DispatchQueue.main.async {
+            self.isLoggedOut = true
+        }
+    }
+    
+    private func clearUserData() {
+        firstName = ""
+        lastName = ""
+        middleName = ""
+        title = ""
+        username = ""
+        email = ""
+        phone = ""
+        branch = ""
+        department = ""
+        location = ""
+    }
+    
+    func updatePassword(currentPassword: String, newPassword: String) {
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            passwordErrorMessage = "No user ID found"
+            showPasswordError = true
+            return
+        }
+        
+        isLoading = true
+        
+        db.collection("users").document(userId).getDocument { [weak self] document, error in
+            guard let self = self,
+                  let document = document,
+                  let storedPassword = document.data()?["password"] as? String else {
+                self?.passwordErrorMessage = "Error verifying current password"
+                self?.showPasswordError = true
+                self?.isLoading = false
+                return
+            }
+            
+            if storedPassword != currentPassword {
+                self.passwordErrorMessage = "Current password is incorrect"
+                self.showPasswordError = true
+                self.isLoading = false
+                return
+            }
+            
+            self.db.collection("users").document(userId).updateData([
+                "password": newPassword
+            ]) { error in
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    if let error = error {
+                        self.passwordErrorMessage = error.localizedDescription
+                        self.showPasswordError = true
+                    } else {
+                        self.showPasswordSuccess = true
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateProfile(
+        firstName: String,
+        lastName: String,
+        phone: String,
+        title: String,
+        branch: String,
+        department: String,
+        location: String
+    ) {
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            self.errorMessage = "No user ID found"
+            return
+        }
+        
+        isLoading = true
+        errorMessage = nil
+        
+        let updatedData: [String: Any] = [
+            "fname": firstName,
+            "lname": lastName,
+            "phone": phone,
+            "title": title,
+            "branch": branch,
+            "department": department,
+            "location": location
+        ]
+        
+        Task {
+            do {
+                try await db.collection("users").document(userId).updateData(updatedData)
+                
+                await MainActor.run {
+                        // Update local state
+                    self.firstName = firstName
+                    self.lastName = lastName
+                    self.phone = phone
+                    self.title = title
+                    self.branch = branch
+                    self.department = department
+                    self.location = location
+                    
+                    self.isLoading = false
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = "Error updating profile: \(error.localizedDescription)"
+                    self.isLoading = false
+                }
+            }
+        }
+    }
+    
+    private func fetchUser() {
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            self.errorMessage = "No user ID found"
+            self.isLoggedOut = true
+            return
+        }
+        
+        isLoading = true
+        errorMessage = nil
+        
+        Task {
+            do {
+                let document = try await db.collection("users").document(userId).getDocument()
+                
+                if document.exists {
+                    await MainActor.run {
+                            // Map Firestore data to our Profile properties
+                        self.firstName = document["fname"] as? String ?? "Unknown"
+                        self.lastName = document["lname"] as? String ?? "Unknown"
+                        self.middleName = document["mname"] as? String ?? "Unknown"
+                        self.username = document["username"] as? String ?? "Unknown"
+                        self.email = document["email"] as? String ?? "Unknown"
+                        self.branch = document["branch"] as? String ?? "Unknown"
+                        self.department = document["department"] as? String ?? "Unknown"
+                        self.phone = document["phone"] as? String ?? "Unknown"
+                        self.title = document["title"] as? String ?? "Unknown"
+                        self.location = document["location"] as? String ?? "Unknown"
+                        
+                        self.isLoading = false
+                    }
+                } else {
+                    await MainActor.run {
+                        self.errorMessage = "User data not found."
+                        self.isLoading = false
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = "Error fetching user: \(error.localizedDescription)"
+                    self.isLoading = false
+                }
+            }
+        }
     }
 }

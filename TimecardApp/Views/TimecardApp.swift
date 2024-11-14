@@ -1,17 +1,15 @@
-//
-//  TimecardApp.swift
-//  TimecardApp
-//
-//  Created by Damian Rozycki on 10/4/24.
-//
+    // TimecardApp.swift
+    import SwiftUI
+    import Firebase
 
-import SwiftUI
-
-@main
-struct TimecardApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+    @main
+    struct TimecardApp: App {
+        // Register app delegate
+        @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+        
+        var body: some Scene {
+            WindowGroup {
+                ContentView()
+            }
         }
     }
-}

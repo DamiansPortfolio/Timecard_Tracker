@@ -1,91 +1,154 @@
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case email, password
+    }
     
     var body: some View {
-        ZStack {
-            // Teal Background
+        VStack {
+            // Background
             Color.teal
                 .ignoresSafeArea()
             
-            VStack {
-                // User Icon
+            // Content
+            VStack(spacing: 25) {
+                // Logo
                 Image(systemName: "person.crop.circle.badge.clock")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 100, height: 100)
                     .foregroundColor(.white)
-                    .padding(.bottom, 20)
                 
-                // App Title
                 Text("MyTimecard+")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.white)
-                    .padding(.bottom, 40)
                 
-                // Email TextField
-                TextField("Email", text: $viewModel.email)
-                    .padding()
-                    .background(Color.white.opacity(0.2))
-                    .cornerRadius(10)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 20)
-                
-                // Password TextField with toggle visibility
-                HStack {
-                    if viewModel.showPassword {
-                        TextField("Password", text: $viewModel.password)
-                            .foregroundColor(.white)
-                    } else {
-                        SecureField("Password", text: $viewModel.password)
-                            .foregroundColor(.white)
+                // Login Form
+                VStack(spacing: 15) {
+                    // Email
+                    VStack(alignment: .leading) {
+                        TextField("", text: $viewModel.email)
+                            .placeholder(when: viewModel.email.isEmpty) {
+                                Text("Email").foregroundColor(.white.opacity(0.7))
+                            }
+                            .textInputAutocapitalization(.never)
+                            .keyboardType(.emailAddress)
+                            .focused($focusedField, equals: .email)
+                            .submitLabel(.next)
                     }
-                    Button(action: {
-                        viewModel.showPassword.toggle()
-                    }) {
-                        Image(systemName: viewModel.showPassword ? "eye.slash" : "eye")
-                            .foregroundColor(.white)
+                    .modifier(CustomFieldModifier())
+                    
+                    // Password
+                    VStack(alignment: .leading) {
+                        HStack {
+                            if viewModel.showPassword {
+                                TextField("", text: $viewModel.password)
+                                    .placeholder(when: viewModel.password.isEmpty) {
+                                        Text("Password").foregroundColor(.white.opacity(0.7))
+                                    }
+                            } else {
+                                SecureField("", text: $viewModel.password)
+                                    .placeholder(when: viewModel.password.isEmpty) {
+                                        Text("Password").foregroundColor(.white.opacity(0.7))
+                                    }
+                            }
+                            
+                            Button {
+                                viewModel.showPassword.toggle()
+                            } label: {
+                                Image(systemName: viewModel.showPassword ? "eye.slash" : "eye")
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .focused($focusedField, equals: .password)
+                        .submitLabel(.done)
                     }
+                    .modifier(CustomFieldModifier())
                 }
-                .padding()
-                .background(Color.white.opacity(0.2))
-                .cornerRadius(10)
-                .padding(.horizontal, 20)
-                .padding(.top, 10)
+                
+                // Error Message
+                if !viewModel.errorMessage.isEmpty {
+                    Text(viewModel.errorMessage)
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
+                }
                 
                 // Login Button
-                Button(action: {
+                Button {
                     viewModel.login()
-                }) {
-                    Text("Login")
-                        .font(.headline)
-                        .foregroundColor(viewModel.isLoginDisabled ? Color.gray : Color.teal)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 20)
+                } label: {
+                    ZStack {
+                        Text("Login")
+                            .font(.headline)
+                            .foregroundColor(.teal)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(10)
+                        
+                        if viewModel.isLoading {
+                            ProgressView()
+                                .tint(.teal)
+                        }
+                    }
                 }
                 .disabled(viewModel.isLoginDisabled)
                 
-                // Forgot Password link
-                Button(action: {
-                    // Handle forgot password action
-                }) {
-                    Text("Forgot Password?")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
+                Button("Forgot Password?") {
+                    // Handle forgot password
                 }
+                .foregroundColor(.white)
             }
+            .padding(.horizontal, 30)
+        }
+        .background(Color.teal)
+        .fullScreenCover(isPresented: $viewModel.isAuthenticated) {
+            ProfileView()
+        }
+        .onSubmit {
+            switch focusedField {
+            case .email:
+                focusedField = .password
+            case .password:
+                viewModel.login()
+            case .none:
+                break
+            }
+        }
+    }
+}
+
+// Custom Modifiers
+struct CustomFieldModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
             .padding()
+            .background(Color.white.opacity(0.2))
+            .cornerRadius(10)
+    }
+}
+
+// Placeholder Extension
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+        
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
         }
     }
 }
 
 #Preview {
-        LoginView()
+    LoginView()
 }
