@@ -4,6 +4,7 @@
 //
 //  Created by Damian Rozycki on 11/14/24.
 //
+//
 import Foundation
 
 struct DayTimecard: Identifiable {
