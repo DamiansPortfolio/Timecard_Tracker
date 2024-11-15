@@ -17,9 +17,9 @@ struct TimecardListView: View {
                     }
                     .onDelete(perform: deleteTimecard)
                 }
-                .listStyle(.inset)
-                .cornerRadius(15)
-                .padding(40)
+//                .listStyle(.inset)
+//                .cornerRadius(15)
+//                .padding(40)
                 
                 
             }

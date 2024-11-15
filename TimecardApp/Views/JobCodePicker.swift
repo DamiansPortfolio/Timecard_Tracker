@@ -1,9 +1,3 @@
-//
-//  JobCodePicker.swift
-//  TimecardApp
-//
-//  Created by Damian Rozycki on 11/14/24.
-//
 import SwiftUI
 
 struct JobCodePicker: View {
@@ -17,24 +11,20 @@ struct JobCodePicker: View {
                 }) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(jobCode.description)
-                                .font(.headline)
                             Text(jobCode.rawValue)
+                                .font(.headline)
+                            Text(jobCode.description)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
                         Spacer()
                         if selectedJobCode == jobCode {
                             Image(systemName: "checkmark")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.teal)
                         }
                     }
                 }
             }
         }
     }
-}
-
-#Preview {
-    JobCodePicker(selectedJobCode: .constant(.development))
 }

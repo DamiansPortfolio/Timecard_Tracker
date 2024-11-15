@@ -13,3 +13,7 @@ struct Profile {
     var department: String
     var location: String
 }
+
+enum EditingSection {
+    case information, workDetails, none
+}

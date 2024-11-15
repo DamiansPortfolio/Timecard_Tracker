@@ -12,13 +12,13 @@ struct ContentView: View {
     init() {
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
-        tabBarAppearance.backgroundColor = UIColor.systemTeal
+        tabBarAppearance.backgroundColor = UIColor.white
         
         tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.gray
         tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
         
-        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.white
-        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.systemTeal
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.systemTeal]
         
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance

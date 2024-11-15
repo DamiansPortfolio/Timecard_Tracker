@@ -22,13 +22,7 @@ struct AddTimecardView: View {
                         HStack {
                             Text("Job Code")
                             Spacer()
-                            VStack(alignment: .trailing) {
-                                Text(selectedJobCode.description)
-                                    .foregroundColor(.gray)
-                                Text(selectedJobCode.rawValue)
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
+                            Text(selectedJobCode.rawValue)
                         }
                     }
                 }

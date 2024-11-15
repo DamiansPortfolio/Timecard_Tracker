@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     @State private var isEditingProfile = false
+    @State private var editingSection: EditingSection = .none
     @State private var showChangePasswordSheet = false
     @AppStorage("userId") private var userId: String?
     
@@ -22,7 +23,7 @@ struct ProfileView: View {
                                 ProgressView()
                                     .tint(.teal)
                             } else {
-                                    // Information Section
+                                // Information Section
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Information")
@@ -31,6 +32,7 @@ struct ProfileView: View {
                                             .foregroundColor(.teal)
                                         Spacer()
                                         Button("Edit") {
+                                            editingSection = .information
                                             isEditingProfile.toggle()
                                         }
                                         .buttonStyle(.bordered)
@@ -46,7 +48,7 @@ struct ProfileView: View {
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
                                 
-                                    // Work Details Section
+                                // Work Details Section
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Work Details")
@@ -54,6 +56,13 @@ struct ProfileView: View {
                                             .bold()
                                             .foregroundColor(.teal)
                                         Spacer()
+                                        Button("Edit") {
+                                            editingSection = .workDetails
+                                            isEditingProfile.toggle()
+                                        }
+                                        .buttonStyle(.bordered)
+                                        .tint(.teal)
+                                        .bold()
                                     }
                                     ProfileInfoRow(label: "Title:", value: viewModel.title)
                                     ProfileInfoRow(label: "Branch:", value: viewModel.branch)
@@ -65,13 +74,15 @@ struct ProfileView: View {
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
                                 
-                                    // Settings Section
+                                // Settings Section
                                 VStack(alignment: .leading, spacing: 10) {
-                                    Text("Settings")
-                                        .font(.title)
-                                        .bold()
-                                        .foregroundColor(.teal)
-                                    
+                                    HStack {
+                                        Text("Settings")
+                                            .font(.title)
+                                            .bold()
+                                            .foregroundColor(.teal)
+                                        Spacer()
+                                    }
                                     Button("Change Password") {
                                         showChangePasswordSheet = true
                                     }
@@ -82,14 +93,7 @@ struct ProfileView: View {
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
                                 
-                                    // Support Section
-                                VStack {
-                                    Button("Contact Support") {
-                                            // viewModel.contactSupport()
-                                    }
-                                    .foregroundColor(.blue)
-                                }
-                                .padding(.top, 10)
+                                
                             }
                             
                             if let error = viewModel.errorMessage {
@@ -98,7 +102,6 @@ struct ProfileView: View {
                                     .padding()
                             }
                             
-                                // Log Out Button
                             Button(action: {
                                 viewModel.logOut()
                                 userId = nil
@@ -112,10 +115,11 @@ struct ProfileView: View {
                         }
                         .padding()
                     }
-                    .background(Color.teal.opacity(0.2))
+//                    .background(Color.teal.opacity(0.2))
                     .navigationTitle("Profile")
                     .sheet(isPresented: $isEditingProfile) {
-                        EditProfileView(viewModel: viewModel)
+                        EditProfileView(viewModel: viewModel, editingSection: editingSection)
+                            .presentationDetents([.medium, .large])
                     }
                     .sheet(isPresented: $showChangePasswordSheet) {
                         ChangePasswordView(viewModel: viewModel)

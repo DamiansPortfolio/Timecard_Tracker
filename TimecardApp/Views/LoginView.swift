@@ -10,7 +10,7 @@ struct LoginView: View {
     }
     
     var body: some View {
-        VStack {
+        ZStack {
             // Background
             Color.teal
                 .ignoresSafeArea()

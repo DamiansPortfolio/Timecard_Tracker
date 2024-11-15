@@ -10,6 +10,7 @@ import FirebaseFirestore
 struct EditProfileView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel: ProfileViewModel
+    @State private var editingSection: EditingSection
     
     @State private var firstName: String
     @State private var lastName: String
@@ -19,8 +20,9 @@ struct EditProfileView: View {
     @State private var department: String
     @State private var location: String
     
-    init(viewModel: ProfileViewModel) {
+    init(viewModel: ProfileViewModel, editingSection: EditingSection) {
         self.viewModel = viewModel
+        self.editingSection = editingSection
         _firstName = State(initialValue: viewModel.firstName)
         _lastName = State(initialValue: viewModel.lastName)
         _phone = State(initialValue: viewModel.phone)
@@ -33,27 +35,33 @@ struct EditProfileView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Personal Information")) {
-                    TextField("First Name", text: $firstName)
-                    TextField("Last Name", text: $lastName)
-                    TextField("Phone", text: $phone)
-                        .keyboardType(.phonePad)
+                if editingSection == .information {
+                    
+                    Section(header: Text("Personal Information")) {
+                        TextField("First Name", text: $firstName)
+                        TextField("Last Name", text: $lastName)
+                        TextField("Phone", text: $phone)
+                            .keyboardType(.phonePad)
+                    }
                 }
                 
-                Section(header: Text("Work Information")) {
-                    TextField("Title", text: $title)
-                    TextField("Branch", text: $branch)
-                    TextField("Department", text: $department)
-                    TextField("Location", text: $location)
-                }
+                if editingSection == .workDetails {
+                    
+                    Section(header: Text("Work Details")) {
+                        TextField("Title", text: $title)
+                        TextField("Branch", text: $branch)
+                        TextField("Department", text: $department)
+                        TextField("Location", text: $location)
+                    }}
             }
             .navigationTitle("Edit Profile")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .bold()
+                    .tint(.teal)
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -69,6 +77,9 @@ struct EditProfileView: View {
                         )
                         dismiss()
                     }
+                    .tint(.teal)
+                    .bold()
+
                 }
             }
             .overlay {
@@ -81,8 +92,4 @@ struct EditProfileView: View {
             }
         }
     }
-}
-
-#Preview {
-    EditProfileView(viewModel: ProfileViewModel())
 }
