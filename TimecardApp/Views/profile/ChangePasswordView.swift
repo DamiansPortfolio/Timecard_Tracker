@@ -31,12 +31,16 @@ struct ChangePasswordView: View {
                         viewModel.updatePassword(currentPassword: currentPassword, newPassword: newPassword)
                     }
                 }
+                .bold()
+                .tint(.teal)
                 .disabled(currentPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty || newPassword != confirmPassword)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
             .navigationTitle("Change Password")
             .toolbar {
                 Button("Cancel") { dismiss() }
+                    .bold()
+                    .tint(.teal)
             }
             .alert("Error", isPresented: $viewModel.showPasswordError) {
                 Button("OK", role: .cancel) { }
@@ -53,7 +57,7 @@ struct ChangePasswordView: View {
                     ProgressView()
                         .scaleEffect(1.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.black.opacity(0.1))
+                        .background(Color.black.opacity(0.2))
                 }
             }
         }

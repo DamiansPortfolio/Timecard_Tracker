@@ -73,18 +73,14 @@ struct TimecardDetailView: View {
                 
                 // Action Button (only show for draft timecards)
                 if timecard.status == .draft {
-                    Button(action: {
+                    Button("Submit Timecard") {
                         showingSubmitAlert = true
-                    }) {
-                        Text("Submit Timecard")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
                     }
-                    .padding(.top)
+                    .buttonStyle(.borderedProminent)
+                    .tint(.teal)
+                    .bold()
+                    .frame(maxWidth: .infinity)
+                    
                 }
                 
                 Spacer()

@@ -21,6 +21,7 @@ struct AddTimecardView: View {
                     Button(action: { showJobCodePicker = true }) {
                         HStack {
                             Text("Job Code")
+                                .foregroundColor(.black)
                             Spacer()
                             Text(selectedJobCode.rawValue)
                         }
@@ -67,37 +68,11 @@ struct AddTimecardView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Cancel") { dismiss() }
+                        .bold()
                 }
             }
             .sheet(isPresented: $showJobCodePicker) {
-                NavigationView {
-                    List(JobCode.allCases, id: \.self) { code in
-                        Button(action: {
-                            selectedJobCode = code
-                            showJobCodePicker = false
-                        }) {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(code.description)
-                                    Text(code.rawValue)
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
-                                }
-                                Spacer()
-                                if selectedJobCode == code {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.blue)
-                                }
-                            }
-                        }
-                    }
-                    .navigationTitle("Select Job Code")
-                    .toolbar {
-                        Button("Done") {
-                            showJobCodePicker = false
-                        }
-                    }
-                }
+                JobCodePicker(selectedJobCode: $selectedJobCode)
             }
             .alert("Success", isPresented: $showSuccess) {
                 Button("OK") { dismiss() }

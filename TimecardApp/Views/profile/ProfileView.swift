@@ -86,7 +86,7 @@ struct ProfileView: View {
                                     Button("Change Password") {
                                         showChangePasswordSheet = true
                                     }
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.black)
                                 }
                                 .padding()
                                 .background(Color.white)
@@ -115,7 +115,6 @@ struct ProfileView: View {
                         }
                         .padding()
                     }
-//                    .background(Color.teal.opacity(0.2))
                     .navigationTitle("Profile")
                     .sheet(isPresented: $isEditingProfile) {
                         EditProfileView(viewModel: viewModel, editingSection: editingSection)
