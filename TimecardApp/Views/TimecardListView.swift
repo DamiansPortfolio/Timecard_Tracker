@@ -29,8 +29,11 @@ struct TimecardListView: View {
                 
                 ToolbarItem(placement: .navigationBarLeading) {
                     Menu {
-                        Button("Sort by Date") {
-                            viewModel.sortByDate()
+                        Button("Most Recent") {
+                            viewModel.sortByDateAscending()
+                        }
+                        Button("Oldest") {
+                            viewModel.sortByDateDescending()
                         }
                     } label: {
                         Image(systemName:"arrow.up.arrow.down")

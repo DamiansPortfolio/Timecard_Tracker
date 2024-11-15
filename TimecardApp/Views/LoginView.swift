@@ -148,7 +148,3 @@ extension View {
         }
     }
 }
-
-#Preview {
-    LoginView()
-}

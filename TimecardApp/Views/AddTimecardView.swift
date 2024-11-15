@@ -152,6 +152,8 @@ struct AddTimecardView: View {
             endTime: endTime,
             breakDuration: breakDuration
         )
+        
+        // The view will automatically update due to the snapshot listener
         showSuccess = true
     }
 }
