@@ -1,20 +1,4 @@
 import SwiftUI
-import FirebaseFirestore
-
-private struct DetailRow: View {
-    let title: String
-    let value: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(title)
-                .font(.subheadline)
-                .foregroundColor(.gray)
-            Text(value)
-                .font(.body)
-        }
-    }
-}
 
 struct TimecardDetailView: View {
     let timecard: Timecard
@@ -29,76 +13,53 @@ struct TimecardDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                // Employee Information Section
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Employee Information")
-                        .font(.title2)
-                        .foregroundColor(.teal)
+                
+                SectionHeader(title: "Employee Information")
+                DetailRow(title: "Employee Name", value: "\(timecard.firstName) \(timecard.lastName)")
+                DetailRow(title: "Job Code", value: timecard.jobCode)
+                
+                SectionHeader(title: "Time Information")
+                DetailRow(title: "Date", value: formatDate(timecard.date))
+                DetailRow(title: "Start Time", value: formatTime(timecard.startTime))
+                DetailRow(title: "End Time", value: formatTime(timecard.endTime))
+                DetailRow(title: "Break Duration", value: String(format: "%.2f hours", timecard.breakDuration))
+                DetailRow(title: "Total Hours", value: String(format: "%.2f", timecard.totalHours))
+                
+                SectionHeader(title: "Status Information")
+                HStack {
+                    Text("Status:")
                         .bold()
-                    
-                    DetailRow(title: "Employee Name", value: "\(timecard.firstName) \(timecard.lastName)")
-                    DetailRow(title: "Job Code", value: timecard.jobCode)
+                    Text(timecard.status.rawValue.capitalized)
+                        .foregroundColor(statusColor(for: timecard.status))
                 }
                 
-                // Time Information Section
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Time Information")
-                        .font(.title2)
-                        .foregroundColor(.teal)
-                        .bold()
-                        .padding(.top)
-                    
-                    DetailRow(title: "Date", value: formatDate(timecard.date))
-                    DetailRow(title: "Start Time", value: formatTime(timecard.startTime))
-                    DetailRow(title: "End Time", value: formatTime(timecard.endTime))
-                    DetailRow(title: "Break Duration", value: String(format: "%.2f hours", timecard.breakDuration))
-                    DetailRow(title: "Total Hours", value: String(format: "%.2f", timecard.totalHours))
-                }
-                
-                // Status Information Section
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Status Information")
-                        .font(.title2)
-                        .foregroundColor(.teal)
-                        .bold()
-                        .padding(.top)
-                    
-                    HStack {
-                        Text("Status:")
-                            .bold()
-                        Text(timecard.status.rawValue.capitalized)
-                            .foregroundColor(statusColor(for: timecard.status))
-                    }
-                }
-                
-                // Action Button (only show for draft timecards)
                 if timecard.status == .draft {
-                    Button("Submit Timecard") {
-                        showingSubmitAlert = true
+                    HStack {
+                        Spacer()
+                        Button("Edit Timecard") {
+                            // Add edit action here
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.teal)
+                        .bold()
+                        Spacer()
+                        Button("Submit Timecard") {
+                            showingSubmitAlert = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.teal)
+                        .bold()
+                        Spacer()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.teal)
-                    .bold()
-                    .frame(maxWidth: .infinity)
-                    
                 }
-                
-                Spacer()
             }
-            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading) // Ensure full-width content
+            .padding() // Add padding inside the ScrollView
         }
         .navigationTitle("Timecard Details")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            if timecard.status == .draft {
-                Button("Edit") {
-                    // Add edit action here
-                }
-            }
-        }
         .alert("Submit Timecard", isPresented: $showingSubmitAlert) {
             Button("Cancel", role: .cancel) { }
-            Button("Submit", role: .destructive) {
+            Button("Submit") {
                 viewModel.submitTimecard(timecard)
             }
         } message: {
@@ -135,6 +96,32 @@ struct TimecardDetailView: View {
         case .submitted: return .blue
         case .approved: return .green
         case .rejected: return .red
+        }
+    }
+}
+
+private struct SectionHeader: View {
+    let title: String
+    
+    var body: some View {
+        Text(title)
+            .font(.title2)
+            .foregroundColor(.teal)
+            .bold()
+    }
+}
+
+private struct DetailRow: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            Text(value)
+                .font(.body)
         }
     }
 }

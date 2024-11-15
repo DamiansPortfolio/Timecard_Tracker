@@ -17,16 +17,9 @@ struct TimecardListView: View {
                     }
                     .onDelete(perform: deleteTimecard)
                 }
-//                .listStyle(.inset)
-//                .cornerRadius(15)
-//                .padding(40)
-                
-                
             }
             .navigationTitle("Timecards")
-            .background(Color.teal.opacity(0.3))
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Menu {
                         Button("Most Recent") {
@@ -67,21 +60,17 @@ struct TimecardListView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                    Button("Add") {
                         showAddTimecardSheet.toggle() // Present the sheet
-                    }) {
-                        Text("Add")
-                            .bold()
-                            .foregroundColor(.white)
-                    }
-                    .sheet(isPresented: $showAddTimecardSheet) {
-                        AddTimecardView(viewModel: viewModel)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.teal)
+                    .bold()
                 }
             }
-            
+        }
+        .sheet(isPresented: $showAddTimecardSheet) {
+            AddTimecardView(viewModel: viewModel)
         }
     }
     

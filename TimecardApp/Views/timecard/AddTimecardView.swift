@@ -64,6 +64,7 @@ struct AddTimecardView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .disabled(viewModel.isLoading || !isValidInput())
             }
+            .tint(.teal)
             .navigationTitle("Add Timecard")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
