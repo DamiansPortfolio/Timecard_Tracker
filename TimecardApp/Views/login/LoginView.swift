@@ -107,7 +107,6 @@ struct LoginView: View {
             }
             .padding(.horizontal, 30)
         }
-        .background(Color.teal)
         .fullScreenCover(isPresented: $viewModel.isAuthenticated) {
             ProfileView()
         }

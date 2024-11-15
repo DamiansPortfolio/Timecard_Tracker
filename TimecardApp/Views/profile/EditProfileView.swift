@@ -61,7 +61,6 @@ struct EditProfileView: View {
                         dismiss()
                     }
                     .bold()
-                    .tint(.teal)
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -77,7 +76,6 @@ struct EditProfileView: View {
                         )
                         dismiss()
                     }
-                    .tint(.teal)
                     .bold()
 
                 }

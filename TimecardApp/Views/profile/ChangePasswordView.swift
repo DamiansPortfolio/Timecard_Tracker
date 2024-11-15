@@ -32,7 +32,6 @@ struct ChangePasswordView: View {
                     }
                 }
                 .bold()
-                .tint(.teal)
                 .disabled(currentPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty || newPassword != confirmPassword)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
@@ -40,7 +39,6 @@ struct ChangePasswordView: View {
             .toolbar {
                 Button("Cancel") { dismiss() }
                     .bold()
-                    .tint(.teal)
             }
             .alert("Error", isPresented: $viewModel.showPasswordError) {
                 Button("OK", role: .cancel) { }

@@ -30,7 +30,6 @@ struct TimecardListView: View {
                         }
                     } label: {
                         Image(systemName:"arrow.up.arrow.down")
-                            .foregroundColor(.teal)
                             .bold()
                     }
                 }
@@ -55,7 +54,6 @@ struct TimecardListView: View {
                     } label: {
                         Image(systemName: "line.3.horizontal.decrease")
                             .bold()
-                            .foregroundColor(.teal)
                     }
                 }
                 
@@ -64,7 +62,6 @@ struct TimecardListView: View {
                         showAddTimecardSheet.toggle() // Present the sheet
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.teal)
                     .bold()
                 }
             }

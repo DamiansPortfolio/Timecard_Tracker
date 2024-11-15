@@ -40,14 +40,12 @@ struct TimecardDetailView: View {
                             // Add edit action here
                         }
                         .buttonStyle(.borderedProminent)
-                        .tint(.teal)
                         .bold()
                         Spacer()
                         Button("Submit Timecard") {
                             showingSubmitAlert = true
                         }
                         .buttonStyle(.borderedProminent)
-                        .tint(.teal)
                         .bold()
                         Spacer()
                     }

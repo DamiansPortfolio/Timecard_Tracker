@@ -36,7 +36,6 @@ struct ProfileView: View {
                                             isEditingProfile.toggle()
                                         }
                                         .buttonStyle(.bordered)
-                                        .tint(.teal)
                                         .bold()
                                     }
                                     ProfileInfoRow(label: "Name:", value: "\(viewModel.firstName) \(viewModel.lastName)")
@@ -61,7 +60,6 @@ struct ProfileView: View {
                                             isEditingProfile.toggle()
                                         }
                                         .buttonStyle(.bordered)
-                                        .tint(.teal)
                                         .bold()
                                     }
                                     ProfileInfoRow(label: "Title:", value: viewModel.title)
@@ -86,7 +84,6 @@ struct ProfileView: View {
                                     Button("Change Password") {
                                         showChangePasswordSheet = true
                                     }
-                                    .foregroundColor(.black)
                                 }
                                 .padding()
                                 .background(Color.white)

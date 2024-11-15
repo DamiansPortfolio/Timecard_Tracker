@@ -32,7 +32,7 @@ struct CalendarView: View {
                 HStack {
                     Button(action: { viewModel.previousWeek() }) {
                         Image(systemName: "chevron.left.circle.fill")
-                            .foregroundColor(.teal)
+//                            .foregroundColor(.teal)
                             .font(.title2)
                     }
                     
@@ -45,7 +45,7 @@ struct CalendarView: View {
                     
                     Button(action: { viewModel.nextWeek() }) {
                         Image(systemName: "chevron.right.circle.fill")
-                            .foregroundColor(.teal)
+//                            .foregroundColor(.teal)
                             .font(.title2)
                     }
                 }

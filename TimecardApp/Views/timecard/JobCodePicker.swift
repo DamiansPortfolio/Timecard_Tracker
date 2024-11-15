@@ -18,7 +18,7 @@ struct JobCodePicker: View {
                                     .font(.headline)
                                 Text(jobCode.description)
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.black)
                             }
                             Spacer()
                             if selectedJobCode == jobCode {
