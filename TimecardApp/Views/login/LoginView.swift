@@ -16,26 +16,23 @@ struct LoginView: View {
                 .ignoresSafeArea()
             
             // Content
-            VStack(spacing: 25) {
+            VStack(spacing: 30) {
                 // Logo
                 Image(systemName: "person.crop.circle.badge.clock")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 150, height: 150)
                     .foregroundColor(.white)
                 
                 Text("MyTimecard+")
-                    .font(.system(size: 32, weight: .bold))
+                    .font(.system(size: 35, weight: .bold))
                     .foregroundColor(.white)
                 
                 // Login Form
-                VStack(spacing: 15) {
+                VStack(spacing: 30) {
                     // Email
                     VStack(alignment: .leading) {
-                        TextField("", text: $viewModel.email)
-                            .placeholder(when: viewModel.email.isEmpty) {
-                                Text("Email").foregroundColor(.white.opacity(0.7))
-                            }
+                        TextField("Email", text: $viewModel.email)
                             .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
                             .focused($focusedField, equals: .email)
@@ -47,15 +44,11 @@ struct LoginView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             if viewModel.showPassword {
-                                TextField("", text: $viewModel.password)
-                                    .placeholder(when: viewModel.password.isEmpty) {
-                                        Text("Password").foregroundColor(.white.opacity(0.7))
-                                    }
+                                TextField("Password", text: $viewModel.password)
+                                
                             } else {
-                                SecureField("", text: $viewModel.password)
-                                    .placeholder(when: viewModel.password.isEmpty) {
-                                        Text("Password").foregroundColor(.white.opacity(0.7))
-                                    }
+                                SecureField("Password", text: $viewModel.password)
+                                
                             }
                             
                             Button {
@@ -99,11 +92,6 @@ struct LoginView: View {
                     }
                 }
                 .disabled(viewModel.isLoginDisabled)
-                
-                Button("Forgot Password?") {
-                    // Handle forgot password
-                }
-                .foregroundColor(.white)
             }
             .padding(.horizontal, 30)
         }
@@ -134,16 +122,4 @@ struct CustomFieldModifier: ViewModifier {
     }
 }
 
-// Placeholder Extension
-extension View {
-    func placeholder<Content: View>(
-        when shouldShow: Bool,
-        alignment: Alignment = .leading,
-        @ViewBuilder placeholder: () -> Content) -> some View {
-        
-        ZStack(alignment: alignment) {
-            placeholder().opacity(shouldShow ? 1 : 0)
-            self
-        }
-    }
-}
+
