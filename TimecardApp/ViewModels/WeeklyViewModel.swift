@@ -8,7 +8,7 @@
 import FirebaseFirestore
 import SwiftUI
 
-class CalendarViewModel: ObservableObject {
+class WeeklyViewModel: ObservableObject {
         // Published properties
     @Published var timecards: [Timecard] = []
     @Published var currentWeekIndex: Int = 0

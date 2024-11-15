@@ -16,9 +16,9 @@ struct ContentView: View {
         Group {
             if userId != nil {
                 TabView {
-                    CalendarView()
+                    WeeklySummaryView()
                         .tabItem {
-                            Label("Calendar", systemImage: "calendar")
+                            Label("Weekly Summary", systemImage: "calendar")
                         }
                     
                     TimecardListView()

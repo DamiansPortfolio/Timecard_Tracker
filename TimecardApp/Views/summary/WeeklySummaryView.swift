@@ -1,14 +1,8 @@
-//
-//  CalendarView.swift
-//  TimecardApp
-//
-//  Created by Damian Rozycki on 11/14/24.
-//
 
 import SwiftUI
 
-struct CalendarView: View {
-    @StateObject private var viewModel = CalendarViewModel()
+struct WeeklySummaryView: View {
+    @StateObject private var viewModel = WeeklyViewModel()
     @State private var isRefreshing = false
     
     var body: some View {
@@ -24,7 +18,6 @@ struct CalendarView: View {
                     Spacer()
                     
                     Text("Total Hours: \(viewModel.totalHours, specifier: "%.1f")")
-                        .foregroundColor(.gray)
                 }
                 
                 // Week Navigation
@@ -54,9 +47,10 @@ struct CalendarView: View {
                 } else if viewModel.currentWeekTimecards.isEmpty {
                     Text("No timecards for this week")
                         .foregroundColor(.gray)
+                        .padding()
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 10) {
+                        LazyVStack(spacing: 12) {
                             ForEach(viewModel.currentWeekTimecards) { timecard in
                                 TimecardDayView(timecard: timecard)
                             }
@@ -64,10 +58,10 @@ struct CalendarView: View {
                     }
                 }
                 
-                
             }
-            .navigationTitle("Calendar")
+            .navigationTitle("Weekly Summary")
             .padding(.horizontal)
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -77,10 +71,13 @@ struct CalendarView: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             isRefreshing = false
                         }
+                        
                     }) {
                         Image(systemName: "arrow.clockwise")
-                            .bold()
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.teal)
                             .rotationEffect(.degrees(isRefreshing ? 360 : 0))
+                        
                     }
                 }
             }
