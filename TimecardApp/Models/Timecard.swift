@@ -1,3 +1,4 @@
+// Timecard model
 import Foundation
 import FirebaseFirestore
 
