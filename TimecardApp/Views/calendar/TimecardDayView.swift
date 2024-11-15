@@ -19,7 +19,7 @@ struct TimecardDayView: View {
                     Text(timecard.dayName)
                         .font(.headline)
                     Text(timecard.dateString)
-                        .font(.caption)
+                        .font(.subheadline)
                         .foregroundColor(.gray)
                 }
                 
@@ -29,7 +29,6 @@ struct TimecardDayView: View {
                     if let hours = timecard.hours {
                         Text("\(hours, specifier: "%.1f") hrs")
                             .font(.subheadline)
-                            .fontWeight(.medium)
                     }
                     
                     if let status = timecard.status {
@@ -38,7 +37,7 @@ struct TimecardDayView: View {
                 }
             }
             .padding()
-            .background(Color.gray.opacity(0.05))
+            .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
         }
     }
