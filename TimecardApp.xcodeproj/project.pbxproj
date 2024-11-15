@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */; };
 		065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560F12CC9A21C003A441F /* LoginViewModel.swift */; };
 		065560FC2CCB23CD003A441F /* JobCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FB2CCB23CD003A441F /* JobCode.swift */; };
 		065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FF2CCD75B8003A441F /* ProfileViewModel.swift */; };
 		065561022CCD75CA003A441F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065561012CCD75CA003A441F /* Profile.swift */; };
+		8E95679A2CE4485B00A692C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */; };
 		8E95679D2CE4490500A692C8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679C2CE4490500A692C8 /* FirebaseAnalytics */; };
 		8E95679F2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679E2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion */; };
 		8E9567A12CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8E9567A02CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -51,11 +51,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		065560F12CC9A21C003A441F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		065560FB2CCB23CD003A441F /* JobCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCode.swift; sourceTree = "<group>"; };
 		065560FF2CCD75B8003A441F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		065561012CCD75CA003A441F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9567DD2CE634D100A692C8 /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
 		8E9567E42CE6669700A692C8 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
@@ -139,11 +139,12 @@
 			children = (
 				8EC38B3F2CB0AA9C000C94FB /* Models */,
 				8EC38B402CB0AAA7000C94FB /* ViewModels */,
+				8EC38B412CB0AAAC000C94FB /* Services */,
 				8EC38B332CB0AA82000C94FB /* Assets.xcassets */,
 				8E9567F02CE6C03A00A692C8 /* Extensions */,
 				8EC38B352CB0AA82000C94FB /* Preview Content */,
 				06FB23E12CD58FBE00F30DD7 /* Views */,
-				0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */,
+				8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */,
 			);
 			path = TimecardApp;
 			sourceTree = "<group>";
@@ -179,6 +180,13 @@
 				8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8EC38B412CB0AAAC000C94FB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,7 +255,7 @@
 			files = (
 				8EC38B372CB0AA82000C94FB /* Preview Assets.xcassets in Resources */,
 				8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */,
-				0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */,
+				8E95679A2CE4485B00A692C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
