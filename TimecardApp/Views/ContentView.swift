@@ -28,6 +28,11 @@ struct ContentView: View {
         Group {
             if userId != nil {
                 TabView {
+                    CalendarView()
+                        .tabItem {
+                            Label("Calendar", systemImage: "person")
+                        }
+                    
                     TimecardListView()
                         .tabItem {
                             Label("Timecards", systemImage: "clock")
@@ -37,6 +42,8 @@ struct ContentView: View {
                         .tabItem {
                             Label("Profile", systemImage: "person")
                         }
+                    
+                    
                 }
             } else {
                 LoginView()
