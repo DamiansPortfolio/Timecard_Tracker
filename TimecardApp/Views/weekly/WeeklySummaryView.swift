@@ -12,32 +12,41 @@ struct WeeklySummaryView: View {
                 HStack {
                     Text(viewModel.currentMonthYear)
                         .font(.title2)
-                        .fontWeight(.bold)
+                        .bold()
                         .foregroundColor(.teal)
                     
                     Spacer()
                     
-                    Text("Total Hours: \(viewModel.totalHours, specifier: "%.1f")")
                 }
                 
                 // Week Navigation
                 HStack {
-                    Button(action: { viewModel.previousWeek() }) {
-                        Image(systemName: "chevron.left.circle.fill")
-                            .font(.title2)
+                    Image(systemName: "chevron.left.circle.fill")
+                        .foregroundColor(.teal)
+                        .onTapGesture {
+                            viewModel.previousWeek()
+                        }
+                    
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Text(viewModel.currentWeekRange)
+                            .font(.headline)
+                        
+                        Text("Total Hours: \(viewModel.totalHours, specifier: "%.1f")")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        
                     }
                     
                     Spacer()
                     
-                    Text(viewModel.currentWeekRange)
-                        .font(.headline)
-                    
-                    Spacer()
-                    
-                    Button(action: { viewModel.nextWeek() }) {
-                        Image(systemName: "chevron.right.circle.fill")
-                            .font(.title2)
-                    }
+                    Image(systemName: "chevron.right.circle.fill")
+                        .foregroundColor(.teal)
+                        .onTapGesture {
+                            viewModel.nextWeek()
+                        }
                 }
                 
                 // Week View
@@ -50,7 +59,7 @@ struct WeeklySummaryView: View {
                         .padding()
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 12) {
+                        LazyVStack(spacing: 10) {
                             ForEach(viewModel.currentWeekTimecards) { timecard in
                                 TimecardDayView(timecard: timecard)
                             }
@@ -61,7 +70,6 @@ struct WeeklySummaryView: View {
             }
             .navigationTitle("Weekly Summary")
             .padding(.horizontal)
-            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -71,7 +79,6 @@ struct WeeklySummaryView: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             isRefreshing = false
                         }
-                        
                     }) {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 16, weight: .medium))
