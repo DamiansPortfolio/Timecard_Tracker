@@ -32,10 +32,11 @@ struct WeeklySummaryView: View {
                     
                     VStack {
                         Text(viewModel.currentWeekRange)
-                            .font(.headline)
+                            .font(.title3)
+                            .bold()
                         
                         Text("Total Hours: \(viewModel.totalHours, specifier: "%.1f")")
-                            .font(.subheadline)
+                            .font(.headline)
                             .foregroundColor(.gray)
                         
                     }
