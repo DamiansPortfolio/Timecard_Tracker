@@ -8,17 +8,6 @@ struct WeeklySummaryView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                // Month Header
-                HStack {
-                    Text(viewModel.currentMonthYear)
-                        .font(.title2)
-                        .bold()
-                        .foregroundColor(.teal)
-                    
-                    Spacer()
-                    
-                }
-                
                 // Week Navigation
                 HStack {
                     Image(systemName: "chevron.left.circle.fill")
@@ -27,17 +16,16 @@ struct WeeklySummaryView: View {
                             viewModel.previousWeek()
                         }
                     
-                    
                     Spacer()
                     
                     VStack {
                         Text(viewModel.currentWeekRange)
-                            .font(.title3)
+                            .font(.title2)
                             .bold()
+                            .foregroundColor(.teal)
                         
                         Text("Total Hours: \(viewModel.totalHours, specifier: "%.1f")")
                             .font(.headline)
-                            .foregroundColor(.gray)
                         
                     }
                     
@@ -70,7 +58,7 @@ struct WeeklySummaryView: View {
                 
             }
             .navigationTitle("Weekly Summary")
-            .padding(.horizontal)
+            .padding()
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
