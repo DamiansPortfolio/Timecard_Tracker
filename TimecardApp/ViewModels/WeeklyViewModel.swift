@@ -12,7 +12,7 @@ class WeeklyViewModel: ObservableObject {
         // Published properties
     @Published var timecards: [Timecard] = []
     @Published var currentWeekIndex: Int = 0
-    @Published var currentWeekTimecards: [DayTimecard] = []
+    @Published var currentWeekTimecards: [TimecardByDay] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
@@ -111,7 +111,7 @@ class WeeklyViewModel: ObservableObject {
             let date = calendar.date(byAdding: .day, value: dayOffset, to: mondayDate) ?? mondayDate
             let timecard = timecards.first { calendar.isDate($0.date, inSameDayAs: date) }
             
-            return DayTimecard(
+            return TimecardByDay(
                 id: UUID().uuidString,
                 date: date,
                 hours: timecard?.totalHours,

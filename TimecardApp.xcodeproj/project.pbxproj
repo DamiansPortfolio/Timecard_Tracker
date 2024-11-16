@@ -42,7 +42,7 @@
 		8E9567D42CE56E4F00A692C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */; };
 		8E9567DE2CE634D100A692C8 /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567DD2CE634D100A692C8 /* Hour.swift */; };
 		8E9567E52CE6669A00A692C8 /* WeeklyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */; };
-		8E9567EF2CE6BFA400A692C8 /* DayTimecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567EE2CE6BFA400A692C8 /* DayTimecard.swift */; };
+		8E9567EF2CE6BFA400A692C8 /* TimecardByDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567EE2CE6BFA400A692C8 /* TimecardByDay.swift */; };
 		8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B332CB0AA82000C94FB /* Assets.xcassets */; };
 		8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */; };
 		8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B482CB0ABCC000C94FB /* Timecard.swift */; };
@@ -59,7 +59,7 @@
 		8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9567DD2CE634D100A692C8 /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
 		8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewModel.swift; sourceTree = "<group>"; };
-		8E9567EE2CE6BFA400A692C8 /* DayTimecard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimecard.swift; sourceTree = "<group>"; };
+		8E9567EE2CE6BFA400A692C8 /* TimecardByDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardByDay.swift; sourceTree = "<group>"; };
 		8EC38B2C2CB0AA80000C94FB /* TimecardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimecardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC38B332CB0AA82000C94FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardListViewModel.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		8EC38B3F2CB0AA9C000C94FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8E9567EE2CE6BFA400A692C8 /* DayTimecard.swift */,
+				8E9567EE2CE6BFA400A692C8 /* TimecardByDay.swift */,
 				8E9567DD2CE634D100A692C8 /* Hour.swift */,
 				065561012CCD75CA003A441F /* Profile.swift */,
 				065560FB2CCB23CD003A441F /* JobCode.swift */,
@@ -243,7 +243,7 @@
 				8E9567E52CE6669A00A692C8 /* WeeklyViewModel.swift in Sources */,
 				8E9567DE2CE634D100A692C8 /* Hour.swift in Sources */,
 				065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */,
-				8E9567EF2CE6BFA400A692C8 /* DayTimecard.swift in Sources */,
+				8E9567EF2CE6BFA400A692C8 /* TimecardByDay.swift in Sources */,
 				065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */,
 				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
 				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,

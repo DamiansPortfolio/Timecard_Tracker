@@ -50,7 +50,7 @@ struct WeeklySummaryView: View {
                     ScrollView {
                         LazyVStack(spacing: 10) {
                             ForEach(viewModel.currentWeekTimecards) { timecard in
-                                TimecardDayView(timecard: timecard)
+                                TimecardByDayView(dailyTimecard: timecard)
                             }
                         }
                     }
