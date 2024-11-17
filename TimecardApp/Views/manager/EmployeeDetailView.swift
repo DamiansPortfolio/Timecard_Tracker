@@ -1,6 +1,14 @@
+import SwiftUI
+
 struct EmployeeDetailView: View {
     let employee: Profile
-    @StateObject private var viewModel = EmployeeDetailViewModel(employee: employee)
+    @StateObject private var viewModel: EmployeeDetailViewModel
+    
+    init(employee: Profile) {
+        self.employee = employee
+        // Initialize StateObject here
+        _viewModel = StateObject(wrappedValue: EmployeeDetailViewModel(employee: employee))
+    }
     
     var body: some View {
         VStack {
@@ -29,8 +37,8 @@ struct EmployeeDetailView: View {
                 List(viewModel.timecards) { timecard in
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Date: \(timecard.date)")
-                            Text("Hours: \(timecard.totalHours)")
+                            Text("Date: \(timecard.date.formatted(date: .numeric, time: .omitted))") // Adjust date formatting
+                            Text("Hours: \(timecard.totalHours, specifier: "%.2f")")
                         }
                         Spacer()
                         if timecard.status == .submitted {

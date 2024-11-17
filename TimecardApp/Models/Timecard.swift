@@ -1,14 +1,14 @@
 import Foundation
 import FirebaseFirestore
 
-enum TimecardStatus: String {
+enum TimecardStatus: String, Codable {
     case draft
     case submitted
     case approved
     case rejected
 }
 
-struct Timecard: Identifiable {
+struct Timecard: Identifiable, Codable {
     let id: String
     let userId: String
     let employeeId: String

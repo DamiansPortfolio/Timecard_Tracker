@@ -1,9 +1,9 @@
 
 import SwiftUI
-
 struct ManagerDashboardView: View {
     @StateObject private var viewModel = ManagerDashboardViewModel()
-    
+    private let managerId = "manager123" // Replace with actual manager ID logic
+
     var body: some View {
         NavigationView {
             List(viewModel.employees) { employee in
@@ -20,7 +20,7 @@ struct ManagerDashboardView: View {
             .navigationTitle("Manage Employees")
         }
         .onAppear {
-            viewModel.fetchManagedEmployees()
+            viewModel.fetchManagedEmployees(for: managerId)
         }
     }
 }

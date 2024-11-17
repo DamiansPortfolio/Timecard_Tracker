@@ -1,6 +1,7 @@
 import Foundation
 
-struct Profile {
+struct Profile: Identifiable {
+    var id: String { username } // Use `username` as the unique identifier
     var username: String
     var password: String
     var fname: String

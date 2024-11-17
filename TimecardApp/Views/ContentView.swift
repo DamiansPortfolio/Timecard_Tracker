@@ -16,6 +16,11 @@ struct ContentView: View {
         Group {
             if userId != nil {
                 TabView {
+                    ManagerDashboardView()
+                        .tabItem {
+                            Label("Manager", systemImage: "calendar")
+                        }
+                    
                     WeeklySummaryView()
                         .tabItem {
                             Label("Weekly Summary", systemImage: "calendar")

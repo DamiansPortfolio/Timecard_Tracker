@@ -13,6 +13,8 @@
 		065560FC2CCB23CD003A441F /* JobCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FB2CCB23CD003A441F /* JobCode.swift */; };
 		065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FF2CCD75B8003A441F /* ProfileViewModel.swift */; };
 		065561022CCD75CA003A441F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065561012CCD75CA003A441F /* Profile.swift */; };
+		067FFF022CE943B800B07CFA /* ManagerDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FFF012CE943B800B07CFA /* ManagerDashboardViewModel.swift */; };
+		067FFF042CE943C100B07CFA /* EmployeeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */; };
 		8E95679D2CE4490500A692C8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679C2CE4490500A692C8 /* FirebaseAnalytics */; };
 		8E95679F2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679E2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion */; };
 		8E9567A12CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8E9567A02CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -56,6 +58,8 @@
 		065560FB2CCB23CD003A441F /* JobCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCode.swift; sourceTree = "<group>"; };
 		065560FF2CCD75B8003A441F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		065561012CCD75CA003A441F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		067FFF012CE943B800B07CFA /* ManagerDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerDashboardViewModel.swift; sourceTree = "<group>"; };
+		067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailViewModel.swift; sourceTree = "<group>"; };
 		8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9567DD2CE634D100A692C8 /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
 		8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewModel.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 		8EC38B402CB0AAA7000C94FB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */,
+				067FFF012CE943B800B07CFA /* ManagerDashboardViewModel.swift */,
 				8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */,
 				065560FF2CCD75B8003A441F /* ProfileViewModel.swift */,
 				8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */,
@@ -242,8 +248,10 @@
 				065560FC2CCB23CD003A441F /* JobCode.swift in Sources */,
 				8E9567E52CE6669A00A692C8 /* WeeklyViewModel.swift in Sources */,
 				8E9567DE2CE634D100A692C8 /* Hour.swift in Sources */,
+				067FFF042CE943C100B07CFA /* EmployeeDetailViewModel.swift in Sources */,
 				065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */,
 				8E9567EF2CE6BFA400A692C8 /* TimecardByDay.swift in Sources */,
+				067FFF022CE943B800B07CFA /* ManagerDashboardViewModel.swift in Sources */,
 				065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */,
 				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
 				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,
