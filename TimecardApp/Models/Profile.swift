@@ -13,6 +13,7 @@ struct Profile: Identifiable {
     var branch: String
     var department: String
     var location: String
+    var isManager: Bool
 }
 
 enum EditingSection {

@@ -6,6 +6,7 @@ struct ProfileView: View {
     @State private var editingSection: EditingSection = .none
     @State private var showChangePasswordSheet = false
     @AppStorage("userId") private var userId: String?
+    @AppStorage("isManager") private var isManager: Bool = false // Added isManager status
     
     var body: some View {
         Group {
@@ -72,6 +73,25 @@ struct ProfileView: View {
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
                                 
+                                // Manager Status Section (Only shown if isManager is true)
+                                if isManager {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        HStack {
+                                            Text("Manager Status")
+                                                .font(.title)
+                                                .bold()
+                                                .foregroundColor(.teal)
+                                            Spacer()
+                                        }
+                                        ProfileInfoRow(label: "Role:", value: "Manager")
+                                        ProfileInfoRow(label: "Access Level:", value: "Department Manager")
+                                    }
+                                    .padding()
+                                    .background(Color.white)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 5)
+                                }
+                                
                                 // Settings Section
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
@@ -89,8 +109,6 @@ struct ProfileView: View {
                                 .background(Color.white)
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
-                                
-                                
                             }
                             
                             if let error = viewModel.errorMessage {
