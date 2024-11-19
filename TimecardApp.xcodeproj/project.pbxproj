@@ -11,6 +11,8 @@
 		065560FC2CCB23CD003A441F /* JobCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FB2CCB23CD003A441F /* JobCode.swift */; };
 		065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FF2CCD75B8003A441F /* ProfileViewModel.swift */; };
 		065561022CCD75CA003A441F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065561012CCD75CA003A441F /* Profile.swift */; };
+		7686FFA32CEA83E7008B8266 /* ManagerDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7686FFA22CEA83E1008B8266 /* ManagerDashboard.swift */; };
+		7686FFA72CEA8509008B8266 /* EmployeeDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7686FFA62CEA8501008B8266 /* EmployeeDashboard.swift */; };
 		76D9BC162CE6E1E800E902ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76D9BC152CE6E1E800E902ED /* GoogleService-Info.plist */; };
 		8E95679D2CE4490500A692C8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679C2CE4490500A692C8 /* FirebaseAnalytics */; };
 		8E95679F2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679E2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -55,6 +57,8 @@
 		065560FB2CCB23CD003A441F /* JobCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCode.swift; sourceTree = "<group>"; };
 		065560FF2CCD75B8003A441F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		065561012CCD75CA003A441F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		7686FFA22CEA83E1008B8266 /* ManagerDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerDashboard.swift; sourceTree = "<group>"; };
+		7686FFA62CEA8501008B8266 /* EmployeeDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDashboard.swift; sourceTree = "<group>"; };
 		76D9BC152CE6E1E800E902ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9567DD2CE634D100A692C8 /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 		8EC38B3F2CB0AA9C000C94FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7686FFA22CEA83E1008B8266 /* ManagerDashboard.swift */,
+				7686FFA62CEA8501008B8266 /* EmployeeDashboard.swift */,
 				8E9567EE2CE6BFA400A692C8 /* DayTimecard.swift */,
 				8E9567DD2CE634D100A692C8 /* Hour.swift */,
 				065561012CCD75CA003A441F /* Profile.swift */,
@@ -272,10 +278,12 @@
 				8E9567DE2CE634D100A692C8 /* Hour.swift in Sources */,
 				8E9567F42CE6C0DE00A692C8 /* CalendarExtensions.swift in Sources */,
 				065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */,
+				7686FFA72CEA8509008B8266 /* EmployeeDashboard.swift in Sources */,
 				8E9567EF2CE6BFA400A692C8 /* DayTimecard.swift in Sources */,
 				065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */,
 				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
 				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,
+				7686FFA32CEA83E7008B8266 /* ManagerDashboard.swift in Sources */,
 				8E9567D42CE56E4F00A692C8 /* AppDelegate.swift in Sources */,
 				8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */,
 			);
@@ -411,7 +419,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
-				DEVELOPMENT_TEAM = XK9LMS6NY2;
+				DEVELOPMENT_TEAM = LFGX6QQD8G;
 				ENABLE_PREVIEWS = YES;
 				FIRAppCheckDebugToken = "6C835E8F-BB58-46D6-90FD-F2C69C843ABA";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -441,7 +449,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
-				DEVELOPMENT_TEAM = XK9LMS6NY2;
+				DEVELOPMENT_TEAM = LFGX6QQD8G;
 				ENABLE_PREVIEWS = YES;
 				FIRAppCheckDebugToken = "6C835E8F-BB58-46D6-90FD-F2C69C843ABA";
 				GENERATE_INFOPLIST_FILE = YES;
