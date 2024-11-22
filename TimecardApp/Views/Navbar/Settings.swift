@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Settings: View {
     @ObservedObject var viewModel: TimecardListViewModel
+    @ObservedObject var leaveRequestViewModel: LeaveRequestViewModel = LeaveRequestViewModel()
     @State private var isManager = true // Example state for Manager
     @State private var isAdmin = true   // Example state for Admin
     
@@ -18,22 +19,22 @@ struct Settings: View {
             List {
                 // Shared among all
                 Section(header: Text("Account Settings")) {
-                    NavigationLink(destination: Text("EmployeeList")) {
+                    NavigationLink(destination: AddLeaveRequests(viewModel: leaveRequestViewModel)) {
                         HStack {
-                            Image(systemName: "person.crop.circle")
-                            Text("Employees")
+                            Image(systemName: "calendar.badge.plus")
+                            Text("Request Leave")
                         }
                     }
-                    NavigationLink(destination: Text("AddEmployee")) {
+                    NavigationLink(destination: Text("Payroll??")) {
                         HStack {
-                            Image(systemName: "person.crop.circle.badge.plus")
-                            Text("Add Employee")
+                            Image(systemName: "dollarsign.circle")
+                            Text("Manage Payroll")
                         }
                     }
                     NavigationLink(destination: Text("Notifications")) {
                         HStack {
-                            Image(systemName: "bell")
-                            Text("Notifications")
+                            Image(systemName: "bell.badge")
+                            Text("Notifications | View Alerts & Updates")
                         }
                     }
                 }

@@ -8,6 +8,51 @@ enum TimecardStatus: String, Codable {
     case rejected
 }
 
+enum LeaveStatus: String, Codable, CaseIterable {
+    case pending
+    case approved
+    case denied
+}
+
+struct LeaveRequest: Identifiable {
+    let id: String
+    let userId: String
+    let leaveType: String
+    let startDate: Date
+    let endDate: Date
+    let reason: String
+    let status: LeaveStatus
+
+    init?(document: QueryDocumentSnapshot) {
+        let data = document.data()
+
+        guard let userId = data["userId"] as? String,
+              let leaveType = data["leaveType"] as? String,
+              let startDateTimestamp = data["startDate"] as? Timestamp,
+              let endDateTimestamp = data["endDate"] as? Timestamp,
+              let reason = data["reason"] as? String,
+              let statusRaw = data["status"] as? String,
+              let status = LeaveStatus(rawValue: statusRaw) else {
+            return nil
+        }
+
+        self.id = document.documentID
+        self.userId = userId
+        self.leaveType = leaveType
+        self.startDate = startDateTimestamp.dateValue()
+        self.endDate = endDateTimestamp.dateValue()
+        self.reason = reason
+        self.status = status
+    }
+}
+
+
+struct AlertItem: Identifiable {
+    let id = UUID()
+    let title: String
+    let message: String
+}
+
 struct Timecard: Identifiable, Codable {
     let id: String
     let userId: String
