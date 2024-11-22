@@ -2,9 +2,9 @@
 import SwiftUI
 
 struct TimecardListView: View {
-    @StateObject private var viewModel = TimecardListViewModel()
+    @ObservedObject var viewModel: TimecardListViewModel
     @State private var showAddTimecardSheet = false // State variable for the sheet
-    
+ 
     
     var body: some View {
         NavigationView {
@@ -67,7 +67,11 @@ struct TimecardListView: View {
             }
         }
         .sheet(isPresented: $showAddTimecardSheet) {
-            AddTimecardView(viewModel: viewModel)
+            if viewModel.selectedMode == .ClockInOut {
+                AddTimecardViewCIO(viewModel: viewModel)
+            } else {
+                AddTimecardView(viewModel: viewModel)
+            }
         }
     }
     
@@ -108,3 +112,5 @@ struct TimecardRowView: View {
         }
     }
 }
+
+

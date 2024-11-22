@@ -1,5 +1,6 @@
 import Foundation
 import FirebaseFirestore
+import Combine
 
 class TimecardListViewModel: ObservableObject {
     @Published var timecards: [Timecard] = []
@@ -8,6 +9,7 @@ class TimecardListViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var employeeInfo: (firstName: String, lastName: String)?
+    @Published var selectedMode: TimecardMode = .ClockInOut
     
     private let db = Firestore.firestore()
     
@@ -205,3 +207,6 @@ class TimecardListViewModel: ObservableObject {
         return max(0, workedHours - breakDuration)
     }
 }
+
+
+
