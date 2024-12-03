@@ -29,8 +29,26 @@ struct AddTimecardView: View {
                 }
                 
                 Section(header: Text("Date and Time")) {
-                    DatePicker("Date", selection: $date, displayedComponents: .date)
-                        .datePickerStyle(GraphicalDatePickerStyle())
+                        // DatePicker with error message if weekend selected
+                    DatePicker(
+                        "Date",
+                        selection: $date,
+                        displayedComponents: .date
+                    )
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .onChange(of: date) {
+                        if isWeekend(date: date) {
+                            showError = true
+                        } else {
+                            showError = false
+                        }
+                    }
+                    
+                    if showError {
+                        Text("Sorry, you cannot select Saturday or Sunday.")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                    }
                     
                     Picker("Start Time", selection: $startHour) {
                         ForEach(Hour.allCases) { hour in
@@ -47,9 +65,13 @@ struct AddTimecardView: View {
                     HStack {
                         Text("Break Duration (hours)")
                         Spacer()
-                        TextField("0.0", value: $breakDuration, formatter: NumberFormatter())
-                            .keyboardType(.decimalPad)
-                            .frame(width: 60)
+                        TextField(
+                            "0.0",
+                            value: $breakDuration,
+                            formatter: NumberFormatter()
+                        )
+                        .keyboardType(.decimalPad)
+                        .frame(width: 60)
                     }
                 }
                 
@@ -62,7 +84,7 @@ struct AddTimecardView: View {
                 }
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .disabled(viewModel.isLoading || !isValidInput())
+                .disabled(viewModel.isLoading || !isValidInput() || showError)
             }
             .navigationTitle("Add Timecard")
             .toolbar {
@@ -110,7 +132,10 @@ struct AddTimecardView: View {
     
     private func getDateWithHour(_ hour: Hour) -> Date {
         let calendar = Calendar.current
-        var components = calendar.dateComponents([.year, .month, .day], from: date)
+        var components = calendar.dateComponents(
+            [.year, .month, .day],
+            from: date
+        )
         components.hour = hour.rawValue
         components.minute = 0
         return calendar.date(from: components) ?? date
@@ -128,7 +153,14 @@ struct AddTimecardView: View {
             breakDuration: breakDuration
         )
         
-        // The view will automatically update due to the snapshot listener
+            // The view will automatically update due to the snapshot listener
         showSuccess = true
+    }
+    
+    // Check if the date is a weekend (Saturday or Sunday)
+    private func isWeekend(date: Date) -> Bool {
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: date)
+        return weekday == 7 || weekday == 1 // 7 = Saturday, 1 = Sunday
     }
 }

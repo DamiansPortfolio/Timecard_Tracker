@@ -2,8 +2,9 @@ import SwiftUI
 
 struct TimecardDetailView: View {
     let timecard: Timecard
-    @State private var showingSubmitAlert = false
     @ObservedObject private var viewModel: TimecardListViewModel
+    @State private var showingSubmitAlert = false
+    
     
     init(timecard: Timecard, viewModel: TimecardListViewModel = TimecardListViewModel()) {
         self.timecard = timecard
@@ -34,21 +35,15 @@ struct TimecardDetailView: View {
                 }
                 
                 if timecard.status == .draft {
-                    HStack {
-                        Spacer()
-                        Button("Edit Timecard") {
-                            // Add edit action here
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .bold()
-                        Spacer()
-                        Button("Submit Timecard") {
-                            showingSubmitAlert = true
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .bold()
-                        Spacer()
+                    Button() {
+                        showingSubmitAlert = true
+                    } label: {
+                        Text("Submit Timecard")
+                            .frame(maxWidth: .infinity)
+                        
                     }
+                    .buttonStyle(.borderedProminent)
+                    .bold()
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading) // Ensure full-width content
@@ -73,7 +68,7 @@ struct TimecardDetailView: View {
         }
     }
     
-    // Helper functions for date formatting
+        // Helper functions for date formatting
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
