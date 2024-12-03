@@ -84,7 +84,7 @@ struct TimecardRowView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(timecard.date, style: .date)
+            Text(timecard.date.formatted(.dateTime.weekday(.wide).month(.wide).day().year()))
                 .font(.headline)
             Text("Hours: \(timecard.totalHours, specifier: "%.2f")")
                 .font(.subheadline)

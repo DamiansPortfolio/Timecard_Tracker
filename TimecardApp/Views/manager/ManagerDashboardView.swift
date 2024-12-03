@@ -16,17 +16,22 @@ struct ManagerDashboardView: View {
                         // Quick Stats Cards
                     HStack(spacing: 15) {
                         QuickStatCard(
-                            title: "Pending Timecards",
+                            title: "Team Size",
+                            value: "\(viewModel.managedEmployees.count)",
+                            systemImage: "person.2.fill",
+                            color: .blue
+                        )
+                        QuickStatCard(
+                            title: "This Week",
+                            value: String(format: "%.1fh", viewModel.weeklyHours),
+                            systemImage: "chart.bar.fill",
+                            color: .green
+                        )
+                        QuickStatCard(
+                            title: "Pending",
                             value: "0",
                             systemImage: "clock.fill",
                             color: .pink
-                        )
-                        
-                        QuickStatCard(
-                            title: "Total Hours This Week",
-                            value: String(format: "%.1f", viewModel.weeklyHours),
-                            systemImage: "chart.bar.fill",
-                            color: .green
                         )
                     }
                     .padding()
@@ -37,19 +42,18 @@ struct ManagerDashboardView: View {
                             QuickActionRow(
                                 title: "View My Team",
                                 subtitle: "View all your team members here",
-                                systemImage: "person.2.fill",
-                                badge: "\(viewModel.managedEmployees.count)"
+                                systemImage: "person.2.fill"
                             )
+                            
                         }
-
+                        
                         Divider()
                         
                         NavigationLink(destination: PendingApprovalsView()) {
                             QuickActionRow(
-                                title: "Pending Approvals",
+                                title: "Manage Timecards",
                                 subtitle: "Review all submitted timecards here",
-                                systemImage: "clock.fill",
-                                badge: "0"
+                                systemImage: "clock.fill"
                             )
                         }
                     }
@@ -81,7 +85,6 @@ struct ManagerDashboardView: View {
     }
 }
 
-    // RefreshControl Component
 struct RefreshControl: View {
     var coordinateSpace: CoordinateSpace
     var onRefresh: () -> Void
@@ -120,7 +123,7 @@ struct RefreshControl: View {
                 Spacer()
                 if refresh {
                     ProgressView()
-                        .scaleEffect(1.5)
+                        .scaleEffect(1)
                         .padding()
                 }
                 Spacer()
@@ -131,7 +134,6 @@ struct RefreshControl: View {
     }
 }
 
-    // Supporting Views remain the same, but here they are for completeness:
 struct TeamListView: View {
     let employees: [Profile]
     
@@ -161,7 +163,6 @@ struct QuickActionRow: View {
     let subtitle: String
     let systemImage: String
     var trailing: String? = nil
-    var badge: String? = nil
     
     var body: some View {
         HStack {
@@ -173,27 +174,14 @@ struct QuickActionRow: View {
                     .font(.body)
                     .fontWeight(.medium)
                     .foregroundColor(.black)
-
+                
                 Text(subtitle)
                     .font(.caption)
                     .foregroundColor(.gray)
             }
             
             Spacer()
-            
-            if let badge = badge {
-                Text(badge)
-                    .font(.caption)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .foregroundColor(.white)
-                    .background(.gray.opacity(0.6))
-                    .cornerRadius(10)
-            }
-            if badge == nil {
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-            }
+            Image(systemName: "chevron.right")
         }
         .padding()
         .contentShape(Rectangle())

@@ -28,7 +28,7 @@ struct ProfileView: View {
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Information")
-                                            .font(.title)
+                                            .font(.title2)
                                             .bold()
                                             .foregroundColor(.teal)
                                         Spacer()
@@ -52,7 +52,7 @@ struct ProfileView: View {
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Work Details")
-                                            .font(.title)
+                                            .font(.title2)
                                             .bold()
                                             .foregroundColor(.teal)
                                         Spacer()
@@ -72,31 +72,13 @@ struct ProfileView: View {
                                 .background(Color.white)
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
-                                
-                                // Manager Status Section (Only shown if isManager is true)
-                                if isManager {
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        HStack {
-                                            Text("Manager Status")
-                                                .font(.title)
-                                                .bold()
-                                                .foregroundColor(.teal)
-                                            Spacer()
-                                        }
-                                        ProfileInfoRow(label: "Role:", value: "Manager")
-                                        ProfileInfoRow(label: "Access Level:", value: "Department Manager")
-                                    }
-                                    .padding()
-                                    .background(Color.white)
-                                    .cornerRadius(15)
-                                    .shadow(radius: 5)
-                                }
+                            
                                 
                                 // Settings Section
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Settings")
-                                            .font(.title)
+                                            .font(.title2)
                                             .bold()
                                             .foregroundColor(.teal)
                                         Spacer()
@@ -104,6 +86,7 @@ struct ProfileView: View {
                                     Button("Change Password") {
                                         showChangePasswordSheet = true
                                     }
+                                    .foregroundColor(.black)
                                 }
                                 .padding()
                                 .background(Color.white)

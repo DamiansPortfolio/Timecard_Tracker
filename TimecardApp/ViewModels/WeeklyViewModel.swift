@@ -9,20 +9,17 @@ import FirebaseFirestore
 import SwiftUI
 
 class WeeklyViewModel: ObservableObject {
-        // Published properties
     @Published var timecards: [Timecard] = []
     @Published var currentWeekIndex: Int = 0
     @Published var currentWeekTimecards: [TimecardByDay] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-        // Private properties
     private let calendar = Calendar.current
     private var currentDate = Date()
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
     
-        // Computed properties
     var totalWeeks: Int {
         let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: Date())) ?? Date()
         let endOfFutureRange = calendar.date(byAdding: .month, value: 3, to: Date()) ?? Date()
@@ -55,8 +52,7 @@ class WeeklyViewModel: ObservableObject {
         currentWeekTimecards.compactMap { $0.hours }.reduce(0, +)
     }
 
-    
-        // Initialization and cleanup
+            // Initialization and cleanup
     init() {
         setupTimecardListener()
         updateCurrentWeek()
@@ -66,7 +62,6 @@ class WeeklyViewModel: ObservableObject {
         listener?.remove()
     }
     
-        // Public methods
     func nextWeek() {
         // Calculate end of future range
         let endOfFutureRange = calendar.date(byAdding: .month, value: 3, to: Date()) ?? Date()
@@ -93,7 +88,6 @@ class WeeklyViewModel: ObservableObject {
         setupTimecardListener()
     }
     
-        // Private methods
     private func updateCurrentWeek() {
         guard let weekStart = calendar.date(
             from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
@@ -156,10 +150,9 @@ class WeeklyViewModel: ObservableObject {
                     self.updateCurrentWeek()
                     self.isLoading = false
                     
-#if DEBUG
                     print("Calendar updated: \(self.timecards.count) timecards loaded")
-#endif
                 }
             }
     }
+
 }
