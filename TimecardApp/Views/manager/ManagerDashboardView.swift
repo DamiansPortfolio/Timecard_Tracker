@@ -12,56 +12,42 @@ struct ManagerDashboardView: View {
                     }
                 }
                 
-                VStack(spacing: 20) {
+                VStack(spacing: 10) {
                         // Quick Stats Cards
-                    HStack(spacing: 8) {
+                    HStack(spacing: 15) {
                         QuickStatCard(
-                            title: "Team Size",
-                            value: "\(viewModel.managedEmployees.count)",
-                            systemImage: "person.2.fill",
-                            color: .blue
-                        )
-                        
-                        QuickStatCard(
-                            title: "Pending",
+                            title: "Pending Timecards",
                             value: "0",
                             systemImage: "clock.fill",
-                            color: .orange
+                            color: .pink
                         )
                         
-                        
                         QuickStatCard(
-                            title: "This Week",
-                            value: String(format: "%.1fh", viewModel.weeklyHours),
+                            title: "Total Hours This Week",
+                            value: String(format: "%.1f", viewModel.weeklyHours),
                             systemImage: "chart.bar.fill",
                             color: .green
                         )
                     }
-                    .padding(.horizontal)
+                    .padding()
                     
-                        // Quick Actions
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("Quick Actions")
-                            .font(.headline)
-                            .padding()
-                        
-                        Divider()
                         
                         NavigationLink(destination: TeamListView(employees: viewModel.managedEmployees)) {
                             QuickActionRow(
-                                title: "View Team",
-                                subtitle: "Manage your employees",
+                                title: "View My Team",
+                                subtitle: "View all your team members here",
                                 systemImage: "person.2.fill",
-                                trailing: "\(viewModel.managedEmployees.count) Members"
+                                badge: "\(viewModel.managedEmployees.count)"
                             )
                         }
-                        
+
                         Divider()
                         
                         NavigationLink(destination: PendingApprovalsView()) {
                             QuickActionRow(
                                 title: "Pending Approvals",
-                                subtitle: "Review timecards",
+                                subtitle: "Review all submitted timecards here",
                                 systemImage: "clock.fill",
                                 badge: "0"
                             )
@@ -69,31 +55,14 @@ struct ManagerDashboardView: View {
                     }
                     .background(Color(.systemBackground))
                     .cornerRadius(15)
-                    .shadow(radius: 2)
-                    .padding(.horizontal)
+                    .shadow(radius: 1)
+                    .padding()
                     
-                        // Recent Activity
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("Recent Activity")
-                            .font(.headline)
-                            .padding()
-                        
-                        Divider()
-                        
-                        ForEach(0..<3) { _ in
-                            RecentActivityRow()
-                            Divider()
-                        }
-                    }
-                    .background(Color(.systemBackground))
-                    .cornerRadius(15)
-                    .shadow(radius: 2)
-                    .padding(.horizontal)
+                    
                 }
-                .padding(.top)
             }
             .coordinateSpace(name: "refresh")
-            .navigationTitle("Dashboard")
+            .navigationTitle("Team Dashboard")
             .background(Color(.systemGroupedBackground))
             .overlay {
                 if viewModel.isLoading {
@@ -197,14 +166,14 @@ struct QuickActionRow: View {
     var body: some View {
         HStack {
             Image(systemName: systemImage)
-                .foregroundColor(.gray)
-                .frame(width: 30)
+                .frame(width: 40)
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
                     .font(.body)
                     .fontWeight(.medium)
-                
+                    .foregroundColor(.black)
+
                 Text(subtitle)
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -215,21 +184,14 @@ struct QuickActionRow: View {
             if let badge = badge {
                 Text(badge)
                     .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Color.orange)
+                    .foregroundColor(.white)
+                    .background(.gray.opacity(0.6))
                     .cornerRadius(10)
-            } else if let trailing = trailing {
-                Text(trailing)
-                    .font(.caption)
-                    .foregroundColor(.blue)
             }
-            
-            if badge == nil && trailing == nil {
+            if badge == nil {
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.gray)
                     .font(.caption)
             }
         }
@@ -245,11 +207,11 @@ struct QuickStatCard: View {
     let color: Color
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(spacing: 5) {
             ZStack {
                 Circle()
                     .fill(color.opacity(0.2))
-                    .frame(width: 28, height: 28)
+                    .frame(width: 30, height: 30)
                 
                 Image(systemName: systemImage)
                     .foregroundColor(color)
@@ -265,31 +227,9 @@ struct QuickStatCard: View {
                 .fontWeight(.bold)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 12)
-        .padding(.horizontal, 8)
-        .background(Color(.systemBackground))
-        .cornerRadius(15)
-        .shadow(radius: 2)
-    }
-}
-
-struct RecentActivityRow: View {
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text("John Doe")
-                    .font(.system(size: 16, weight: .medium))
-                Text("Submitted timecard")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
-            
-            Spacer()
-            
-            Text("2h ago")
-                .font(.caption)
-                .foregroundColor(.gray)
-        }
         .padding()
+        .background(.white)
+        .cornerRadius(15)
+        .shadow(radius: 1)
     }
 }

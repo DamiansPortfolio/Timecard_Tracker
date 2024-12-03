@@ -20,13 +20,13 @@ struct ContentView: View {
                     if isManager {
                         ManagerDashboardView()
                             .tabItem {
-                                Label("Manager", systemImage: "person.2.fill") // Changed icon to be more manager-like
+                                Label("Team", systemImage: "person.3.fill") // Changed icon to be more manager-like
                             }
                     }
                     
                     WeeklySummaryView()
                         .tabItem {
-                            Label("Weekly Summary", systemImage: "calendar")
+                            Label("Weekly", systemImage: "calendar")
                         }
                     
                     TimecardListView()
