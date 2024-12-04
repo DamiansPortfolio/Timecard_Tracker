@@ -6,8 +6,12 @@ class ManagerViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var weeklyHours: Double = 0.0
+    @Published var pendingTimecards: [Timecard] = [] // Pending timecards for approval
+    
     
     private let db = Firestore.firestore()
+    
+        // MARK: - Fetch Manager Data
     
     func fetchManagerData(managerId: String) {
         isLoading = true
@@ -29,13 +33,14 @@ class ManagerViewModel: ObservableObject {
                     return
                 }
                 
-                    // Fetch weekly hours for all employees
+                    // Fetch required data
                 self.fetchWeeklyHours(for: employeeIds)
-                
-                    // Fetch all managed employees' profiles
                 self.fetchManagedEmployeesProfiles(employeeIds: employeeIds)
+                self.fetchPendingApprovals(employeeIds: employeeIds)
             }
     }
+    
+        // MARK: - Fetch Managed Employee Profiles
     
     private func fetchManagedEmployeesProfiles(employeeIds: [String]) {
         let group = DispatchGroup()
@@ -72,6 +77,8 @@ class ManagerViewModel: ObservableObject {
             self?.isLoading = false
         }
     }
+    
+        // MARK: - Fetch Weekly Hours
     
     private func fetchWeeklyHours(for employeeIds: [String]) {
         let calendar = Calendar.current
@@ -130,6 +137,51 @@ class ManagerViewModel: ObservableObject {
             self?.weeklyHours = totalHours
         }
     }
+    
+        // MARK: - Fetch Pending Approvals
+    
+    private func fetchPendingApprovals(employeeIds: [String]) {
+        isLoading = true
+        
+            // Fetch pending timecards
+        db.collection("timecards")
+            .whereField("userId", in: employeeIds)
+            .whereField("status", isEqualTo: TimecardStatus.submitted.rawValue)
+            .getDocuments { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    self.handleError("Error fetching pending timecards: \(error.localizedDescription)")
+                    return
+                }
+                
+                self.pendingTimecards = snapshot?.documents.compactMap { document in
+                    Timecard(document: document)
+                } ?? []
+            }
+    }
+    
+        // MARK: - Approve/Deny Timecards
+    func approveTimecard(_ timecard: Timecard) {
+        updateTimecardStatus(timecard, newStatus: .approved)
+    }
+    
+    func denyTimecard(_ timecard: Timecard) {
+        updateTimecardStatus(timecard, newStatus: .rejected)
+    }
+    
+    private func updateTimecardStatus(_ timecard: Timecard, newStatus: TimecardStatus) {
+        db.collection("timecards").document(timecard.id).updateData(["status": newStatus.rawValue]) { [weak self] error in
+            if let error = error {
+                self?.handleError("Error updating timecard: \(error.localizedDescription)")
+                return
+            }
+            self?.pendingTimecards.removeAll { $0.id == timecard.id }
+        }
+    }
+    
+    
+        // MARK: - Handle Errors
     
     private func handleError(_ message: String) {
         DispatchQueue.main.async {

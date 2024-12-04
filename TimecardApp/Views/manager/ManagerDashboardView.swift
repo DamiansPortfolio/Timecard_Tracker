@@ -49,13 +49,14 @@ struct ManagerDashboardView: View {
                         
                         Divider()
                         
-                        NavigationLink(destination: PendingApprovalsView()) {
+                        NavigationLink(destination: PendingTimecardApprovals(viewModel: viewModel, managerId: viewModel.managedEmployees.first?.id ?? "")) {
                             QuickActionRow(
                                 title: "Manage Timecards",
                                 subtitle: "Review all submitted timecards here",
                                 systemImage: "clock.fill"
                             )
                         }
+                        
                     }
                     .background(Color(.systemBackground))
                     .cornerRadius(15)
@@ -148,13 +149,6 @@ struct TeamListView: View {
             }
         }
         .navigationTitle("Team Members")
-    }
-}
-
-struct PendingApprovalsView: View {
-    var body: some View {
-        Text("Pending Approvals View")
-            .navigationTitle("Pending Approvals")
     }
 }
 
