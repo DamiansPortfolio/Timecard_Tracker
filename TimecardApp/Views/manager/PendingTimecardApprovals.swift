@@ -21,7 +21,7 @@ struct PendingTimecardApprovals: View {
                             .tint(.green)
 
                             Button("Reject") {
-                                viewModel.denyTimecard(timecard)
+                                viewModel.rejectTimecard(timecard)
                             }
                             .tint(.red)
                         }

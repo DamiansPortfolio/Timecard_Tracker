@@ -29,7 +29,7 @@ struct ManagerDashboardView: View {
                         )
                         QuickStatCard(
                             title: "Pending",
-                            value: "0",
+                            value: "\(viewModel.pendingTimecards.count)",
                             systemImage: "clock.fill",
                             color: .pink
                         )
