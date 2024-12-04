@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PendingTimecardApprovals: View {
     @StateObject var viewModel: ManagerViewModel
-    let managerId: String // Pass the manager's ID
+    let managerId: String
 
     var body: some View {
         NavigationView {
