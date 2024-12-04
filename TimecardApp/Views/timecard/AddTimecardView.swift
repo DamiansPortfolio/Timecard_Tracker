@@ -157,10 +157,13 @@ struct AddTimecardView: View {
         showSuccess = true
     }
     
-    // Check if the date is a weekend (Saturday or Sunday)
+        // Check if the date is a weekend (Saturday or Sunday)
     private func isWeekend(date: Date) -> Bool {
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: date)
         return weekday == 7 || weekday == 1 // 7 = Saturday, 1 = Sunday
     }
+    
 }
+
+
