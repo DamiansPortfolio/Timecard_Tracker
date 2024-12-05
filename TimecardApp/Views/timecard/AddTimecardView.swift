@@ -5,9 +5,9 @@ struct AddTimecardView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: TimecardListViewModel
     @State private var showError = false
+    @State private var showDuplicateError = false
     @State private var showSuccess = false
     @State private var showJobCodePicker = false
-    
     @State private var selectedJobCode: JobCode = .development
     @State private var date = Date()
     @State private var startHour: Hour = .h9am
@@ -39,8 +39,13 @@ struct AddTimecardView: View {
                     .onChange(of: date) {
                         if isWeekend(date: date) {
                             showError = true
+                            showDuplicateError = false // Reset duplicate error
+                        } else if isDuplicateTimecard(date: date) {
+                            showDuplicateError = true
+                            showError = false // Reset weekend error
                         } else {
                             showError = false
+                            showDuplicateError = false // Reset errors
                         }
                     }
                     
@@ -49,6 +54,12 @@ struct AddTimecardView: View {
                             .foregroundColor(.red)
                             .font(.footnote)
                     }
+                    if showDuplicateError {
+                        Text("A timecard already exists for this date. Please choose a different date or remove the existing timecard to add a new one.")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                    }
+
                     
                     Picker("Start Time", selection: $startHour) {
                         ForEach(Hour.allCases) { hour in
@@ -84,7 +95,13 @@ struct AddTimecardView: View {
                 }
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .disabled(viewModel.isLoading || !isValidInput() || showError)
+                .disabled(viewModel.isLoading || !isValidInput() || showError || !isDateAvailable())
+                
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                }
             }
             .navigationTitle("Add Timecard")
             .toolbar {
@@ -114,6 +131,13 @@ struct AddTimecardView: View {
     
     private func isValidInput() -> Bool {
         calculateTotalHours() > 0
+    }
+    
+    private func isDateAvailable() -> Bool {
+        let calendar = Calendar.current // Define calendar here
+        
+            // Check if the selected date already has a timecard
+        return viewModel.timecards.first { calendar.isDate($0.date, inSameDayAs: date) } == nil
     }
     
     private func calculateTotalHours() -> Double {
@@ -164,6 +188,10 @@ struct AddTimecardView: View {
         return weekday == 7 || weekday == 1 // 7 = Saturday, 1 = Sunday
     }
     
+    private func isDuplicateTimecard(date: Date) -> Bool {
+        let calendar = Calendar.current
+        // Check if there is an existing timecard for the selected date
+        return viewModel.timecards.contains { calendar.isDate($0.date, inSameDayAs: date) }
+    }
+
 }
-
-
