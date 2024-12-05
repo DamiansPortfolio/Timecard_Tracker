@@ -154,5 +154,41 @@ class WeeklyViewModel: ObservableObject {
                 }
             }
     }
+    
+    func submitAllTimecards() {
+        isLoading = true
+        errorMessage = nil
+
+        let group = DispatchGroup()
+
+        let currentWeekStart = calendar.date(
+            from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
+        )
+
+        for timecard in timecards.filter({
+            guard let timecardDate = calendar.date(from: calendar.dateComponents([.year, .month, .day], from: $0.date)) else {
+                return false
+            }
+            return calendar.isDate(timecardDate, equalTo: currentWeekStart ?? Date(), toGranularity: .weekOfYear) && $0.status == .draft
+        }) {
+            group.enter()
+
+            let docRef = db.collection("timecards").document(timecard.id)
+            var updatedData = timecard.firestoreData
+            updatedData["status"] = TimecardStatus.submitted.rawValue
+
+            docRef.updateData(updatedData) { error in
+                if let error = error {
+                    self.errorMessage = "Error submitting timecard: \(error.localizedDescription)"
+                }
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            self.isLoading = false
+            self.refreshData()
+        }
+    }
 
 }

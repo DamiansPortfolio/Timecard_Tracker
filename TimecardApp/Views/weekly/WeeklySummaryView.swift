@@ -1,10 +1,10 @@
-
 import SwiftUI
 
 struct WeeklySummaryView: View {
     @StateObject private var viewModel = WeeklyViewModel()
     @State private var isRefreshing = false
-    
+    @State private var showSubmitAlert = false
+
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
@@ -15,29 +15,28 @@ struct WeeklySummaryView: View {
                         .onTapGesture {
                             viewModel.previousWeek()
                         }
-                    
+
                     Spacer()
-                    
+
                     VStack {
                         Text(viewModel.currentWeekRange)
                             .font(.title2)
                             .bold()
                             .foregroundColor(.teal)
-                        
+
                         Text("Total Hours: \(viewModel.totalHours, specifier: "%.1f")")
                             .font(.headline)
-                        
                     }
-                    
+
                     Spacer()
-                    
+
                     Image(systemName: "chevron.right.circle.fill")
                         .foregroundColor(.teal)
                         .onTapGesture {
                             viewModel.nextWeek()
                         }
                 }
-                
+
                 // Week View
                 if viewModel.isLoading {
                     ProgressView()
@@ -55,7 +54,20 @@ struct WeeklySummaryView: View {
                         }
                     }
                 }
-                
+
+                // Submit Button
+                Button(action: {
+                    showSubmitAlert = true
+                }) {
+                    Text("Submit All Timecards")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.teal)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 20)
             }
             .navigationTitle("Weekly Summary")
             .padding()
@@ -73,9 +85,16 @@ struct WeeklySummaryView: View {
                             .font(.system(size: 16, weight: .medium))
                             .foregroundColor(.teal)
                             .rotationEffect(.degrees(isRefreshing ? 360 : 0))
-                        
                     }
                 }
+            }
+            .alert("Submit All Timecards", isPresented: $showSubmitAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Submit") {
+                    viewModel.submitAllTimecards()
+                }
+            } message: {
+                Text("Are you sure you want to submit all timecards for this week? This action cannot be undone.")
             }
         }
     }
