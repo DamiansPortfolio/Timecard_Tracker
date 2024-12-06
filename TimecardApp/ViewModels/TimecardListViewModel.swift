@@ -21,7 +21,7 @@ class TimecardListViewModel: ObservableObject {
             return
         }
         
-        // Fetch user profile from Firestore
+            // Fetch user profile from Firestore
         db.collection("users").document(userId).getDocument { [weak self] document, error in
             if let document = document, document.exists {
                 let firstName = document["fname"] as? String ?? ""
@@ -73,7 +73,7 @@ class TimecardListViewModel: ObservableObject {
         
         let totalHours = calculateTotalHours(startTime: startTime, endTime: endTime, breakDuration: breakDuration)
         
-        // Create timecard using the employee info from profile
+            // Create timecard using the employee info from profile
         let newTimecard = Timecard(
             userId: userId,
             employeeId: userId,  // Using userId as employeeId for now
@@ -98,7 +98,7 @@ class TimecardListViewModel: ObservableObject {
                 }
                 self.isLoading = false
                 
-                // Refresh timecards after adding
+                    // Refresh timecards after adding
                 self.fetchTimecards()
             }
         }

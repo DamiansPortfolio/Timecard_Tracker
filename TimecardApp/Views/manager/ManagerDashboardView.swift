@@ -36,38 +36,34 @@ struct ManagerDashboardView: View {
                     }
                     .padding()
                     
-                    VStack(alignment: .leading, spacing: 0) {
-                        
-                        NavigationLink(destination: TeamListView(employees: viewModel.managedEmployees)) {
-                            QuickActionRow(
-                                title: "View My Team",
-                                subtitle: "View all your team members here",
-                                systemImage: "person.2.fill"
-                            )
-                            
-                        }
-                        
-                        Divider()
-                        
-                        NavigationLink(destination: PendingTimecardApprovals(viewModel: viewModel, managerId: viewModel.managedEmployees.first?.id ?? "")) {
-                            QuickActionRow(
-                                title: "Manage Timecards",
-                                subtitle: "Review all submitted timecards here",
-                                systemImage: "clock.fill"
-                            )
-                        }
-                        
+                    NavigationLink(destination: TeamListView(employees: viewModel.managedEmployees)) {
+                        QuickActionRow(
+                            title: "View My Team",
+                            subtitle: "View all your team members here",
+                            systemImage: "person.2.fill"
+                        )
                     }
-                    .background(Color(.systemBackground))
+                    .background(.white)
                     .cornerRadius(15)
                     .shadow(radius: 1)
                     .padding()
                     
+                    NavigationLink(destination: PendingTimecardApprovals(viewModel: viewModel, managerId: viewModel.managedEmployees.first?.id ?? "")) {
+                        QuickActionRow(
+                            title: "Manage Timecards",
+                            subtitle: "Review all submitted timecards here",
+                            systemImage: "clock.fill"
+                        )
+                    }
+                    .background(.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 1)
+                    .padding()
                     
                 }
             }
             .coordinateSpace(name: "refresh")
-            .navigationTitle("Team Dashboard")
+            .navigationTitle("Dashboard")
             .background(Color(.systemGroupedBackground))
             .overlay {
                 if viewModel.isLoading {
@@ -135,23 +131,6 @@ struct RefreshControl: View {
     }
 }
 
-struct TeamListView: View {
-    let employees: [Profile]
-    
-    var body: some View {
-        List(employees) { employee in
-            VStack(alignment: .leading) {
-                Text("\(employee.fname) \(employee.lname)")
-                    .font(.headline)
-                Text(employee.title)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
-        }
-        .navigationTitle("Team Members")
-    }
-}
-
 struct QuickActionRow: View {
     let title: String
     let subtitle: String
@@ -215,3 +194,4 @@ struct QuickStatCard: View {
         .shadow(radius: 1)
     }
 }
+

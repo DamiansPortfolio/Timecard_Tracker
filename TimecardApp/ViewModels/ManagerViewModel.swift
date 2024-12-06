@@ -161,6 +161,7 @@ class ManagerViewModel: ObservableObject {
             }
     }
     
+    
         // MARK: - Approve/Reject Timecards
     
     func approveTimecard(_ timecard: Timecard) {

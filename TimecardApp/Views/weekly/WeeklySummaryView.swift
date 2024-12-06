@@ -55,19 +55,15 @@ struct WeeklySummaryView: View {
                     }
                 }
 
-                // Submit Button
                 Button(action: {
                     showSubmitAlert = true
                 }) {
-                    Text("Submit All Timecards")
+                    Text("Sign & Submit All")
                         .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.teal)
-                        .cornerRadius(10)
                 }
-                .padding(.top, 20)
+                .buttonStyle(.borderedProminent)
+
             }
             .navigationTitle("Weekly Summary")
             .padding()
