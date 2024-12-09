@@ -59,6 +59,18 @@ struct ManagerDashboardView: View {
                     .cornerRadius(15)
                     .shadow(radius: 1)
                     .padding()
+
+                    NavigationLink(destination: TimecardReportView(managerViewModel: viewModel)) {
+                        QuickActionRow(
+                            title: "Generate Reports",
+                            subtitle: "Create reports and PDFs here",
+                            systemImage: "doc.text.fill"
+                        )
+                    }
+                    .background(.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 1)
+                    .padding()
                     
                 }
             }
