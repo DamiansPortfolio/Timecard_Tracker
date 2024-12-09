@@ -8,7 +8,7 @@
         @Published var isLoading: Bool = false
         @Published var errorMessage: String = ""
         @Published var isAuthenticated: Bool = false
-        
+
         private let db = Firestore.firestore()
         
         var isLoginDisabled: Bool {
