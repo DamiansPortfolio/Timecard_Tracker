@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */; };
 		062700FA2CE6E6360097B7E2 /* TimecardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062700ED2CE6E6360097B7E2 /* TimecardApp.swift */; };
 		065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560F12CC9A21C003A441F /* LoginViewModel.swift */; };
 		065560FC2CCB23CD003A441F /* JobCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FB2CCB23CD003A441F /* JobCode.swift */; };
 		065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FF2CCD75B8003A441F /* ProfileViewModel.swift */; };
 		065561022CCD75CA003A441F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065561012CCD75CA003A441F /* Profile.swift */; };
 		067FFF042CE943C100B07CFA /* EmployeeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */; };
+		76C182142D062FF600E33030 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76C182132D062FF600E33030 /* GoogleService-Info.plist */; };
+		76C183002D063B5700E33030 /* LeaveRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C182FF2D063B5700E33030 /* LeaveRequestViewModel.swift */; };
+		76C183422D065F7100E33030 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C183412D065F6D00E33030 /* SettingsViewModel.swift */; };
 		8E95679D2CE4490500A692C8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679C2CE4490500A692C8 /* FirebaseAnalytics */; };
 		8E95679F2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679E2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion */; };
 		8E9567A12CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8E9567A02CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -53,13 +55,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		062700ED2CE6E6360097B7E2 /* TimecardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardApp.swift; sourceTree = "<group>"; };
 		065560F12CC9A21C003A441F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		065560FB2CCB23CD003A441F /* JobCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCode.swift; sourceTree = "<group>"; };
 		065560FF2CCD75B8003A441F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		065561012CCD75CA003A441F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailViewModel.swift; sourceTree = "<group>"; };
+		76C182132D062FF600E33030 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		76C182FF2D063B5700E33030 /* LeaveRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveRequestViewModel.swift; sourceTree = "<group>"; };
+		76C183412D065F6D00E33030 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9567DD2CE634D100A692C8 /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
 		8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewModel.swift; sourceTree = "<group>"; };
@@ -137,8 +141,8 @@
 				8EC38B402CB0AAA7000C94FB /* ViewModels */,
 				8EC38B332CB0AA82000C94FB /* Assets.xcassets */,
 				06FB23E12CD58FBE00F30DD7 /* Views */,
-				0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */,
 				062700ED2CE6E6360097B7E2 /* TimecardApp.swift */,
+				76C182132D062FF600E33030 /* GoogleService-Info.plist */,
 			);
 			path = TimecardApp;
 			sourceTree = "<group>";
@@ -159,6 +163,8 @@
 		8EC38B402CB0AAA7000C94FB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				76C183412D065F6D00E33030 /* SettingsViewModel.swift */,
+				76C182FF2D063B5700E33030 /* LeaveRequestViewModel.swift */,
 				067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */,
 				8E95692C2CEA698300A692C8 /* ManagerViewModel.swift */,
 				8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */,
@@ -236,7 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */,
-				0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */,
+				76C182142D062FF600E33030 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +260,9 @@
 				067FFF042CE943C100B07CFA /* EmployeeDetailViewModel.swift in Sources */,
 				065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */,
 				8E9567EF2CE6BFA400A692C8 /* TimecardByDay.swift in Sources */,
+				76C183422D065F7100E33030 /* SettingsViewModel.swift in Sources */,
 				8E95692D2CEA698300A692C8 /* ManagerViewModel.swift in Sources */,
+				76C183002D063B5700E33030 /* LeaveRequestViewModel.swift in Sources */,
 				065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */,
 				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
 				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,
@@ -395,7 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
-				DEVELOPMENT_TEAM = XK9LMS6NY2;
+				DEVELOPMENT_TEAM = LFGX6QQD8G;
 				ENABLE_PREVIEWS = YES;
 				FIRAppCheckDebugToken = "6C835E8F-BB58-46D6-90FD-F2C69C843ABA";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -425,7 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
-				DEVELOPMENT_TEAM = XK9LMS6NY2;
+				DEVELOPMENT_TEAM = LFGX6QQD8G;
 				ENABLE_PREVIEWS = YES;
 				FIRAppCheckDebugToken = "6C835E8F-BB58-46D6-90FD-F2C69C843ABA";
 				GENERATE_INFOPLIST_FILE = YES;
