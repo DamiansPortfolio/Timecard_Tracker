@@ -1,3 +1,11 @@
+    //
+    //  NotificationSettingsViewModel.swift
+    //  TimecardApp
+    //
+    //  Created by Damian Rozycki on 12/5/24.
+    //
+
+
 import SwiftUI
 import FirebaseFirestore
 import UserNotifications
@@ -33,6 +41,60 @@ class NotificationSettingsViewModel: ObservableObject {
                 } else {
                     self?.notificationsAuthorized = false
                     self?.showSettingsAlert = true
+                }
+            }
+        }
+    }
+    
+    func sendTestNotification() {
+        print("Starting notification test...")
+        
+        // Check current notification settings
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification Settings:")
+            print("- Authorization Status: \(settings.authorizationStatus.rawValue)")
+            print("- Alert Setting: \(settings.alertSetting)")
+            print("- Badge Setting: \(settings.badgeSetting)")
+            print("- Sound Setting: \(settings.soundSetting)")
+            
+            // Only proceed if authorized
+            guard settings.authorizationStatus == .authorized else {
+                print("❌ Notifications not authorized!")
+                return
+            }
+            
+            print("✅ Notifications are authorized, sending test...")
+            
+            let content = UNMutableNotificationContent()
+            content.title = "TimecardApp Test"
+            content.body = "If you see this, notifications are working!"
+            content.sound = .default
+            
+            // Trigger immediately (no delay)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            
+            let request = UNNotificationRequest(
+                identifier: UUID().uuidString,
+                content: content,
+                trigger: trigger
+            )
+            
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("❌ Error scheduling notification: \(error)")
+                } else {
+                    print("✅ Test notification scheduled")
+                    
+                    // Show all pending notifications
+                    UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+                        print("📋 Pending notifications: \(requests.count)")
+                        requests.forEach { request in
+                            print("- Notification: \(request.identifier)")
+                            if let trigger = request.trigger as? UNTimeIntervalNotificationTrigger {
+                                print("  Next trigger date: \(trigger.nextTriggerDate() ?? Date())")
+                            }
+                        }
+                    }
                 }
             }
         }

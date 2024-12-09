@@ -1,3 +1,11 @@
+    //
+    //  NotificationCategory.swift
+    //  TimecardApp
+    //
+    //  Created by Damian Rozycki on 12/5/24.
+    //
+
+
 import Foundation
 
 enum NotificationCategory: String {

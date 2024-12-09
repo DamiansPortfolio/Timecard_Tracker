@@ -1,4 +1,13 @@
+    //
+    //  NotificationSettingsView.swift
+    //  TimecardApp
+    //
+    //  Created by Damian Rozycki on 12/5/24.
+    //
+
+
 import SwiftUI
+import UserNotifications
 
 struct NotificationSettingsView: View {
     @Environment(\.dismiss) private var dismiss
@@ -42,26 +51,26 @@ struct NotificationSettingsView: View {
                         .tint(.teal)
                     
                     if viewModel.preferences.scheduleReminders {
-                        DatePicker("Work Start Time", 
-                                 selection: Binding(
+                        DatePicker("Work Start Time",
+                                   selection: Binding(
                                     get: { viewModel.preferences.workStartTime },
                                     set: { viewModel.preferences.workStartTime = $0 }
-                                 ),
-                                 displayedComponents: .hourAndMinute)
+                                   ),
+                                   displayedComponents: .hourAndMinute)
                         
-                        DatePicker("Work End Time", 
-                                 selection: Binding(
+                        DatePicker("Work End Time",
+                                   selection: Binding(
                                     get: { viewModel.preferences.workEndTime },
                                     set: { viewModel.preferences.workEndTime = $0 }
-                                 ),
-                                 displayedComponents: .hourAndMinute)
+                                   ),
+                                   displayedComponents: .hourAndMinute)
                         
-                        DatePicker("Break Time", 
-                                 selection: Binding(
+                        DatePicker("Break Time",
+                                   selection: Binding(
                                     get: { viewModel.preferences.breakTime },
                                     set: { viewModel.preferences.breakTime = $0 }
-                                 ),
-                                 displayedComponents: .hourAndMinute)
+                                   ),
+                                   displayedComponents: .hourAndMinute)
                         
                         Picker("Reminder Time", selection: $viewModel.preferences.reminderAdvanceTime) {
                             Text("5 minutes before").tag(5)
@@ -84,6 +93,7 @@ struct NotificationSettingsView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         viewModel.savePreferences()
+                        viewModel.sendTestNotification() // Add this line
                         dismiss()
                     }
                     .bold()
@@ -106,8 +116,18 @@ struct NotificationSettingsView: View {
                 Text("Please enable notifications in Settings to use this feature.")
             }
         }
+        
         .onAppear {
             viewModel.loadPreferences()
+        }
+        .onAppear {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+                print("🔔 Notification authorization requested")
+                print("- Granted: \(granted)")
+                if let error = error {
+                    print("- Error: \(error)")
+                }
+            }
         }
     }
 }

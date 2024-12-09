@@ -1,3 +1,11 @@
+    //
+    //  NotificationPreferences.swift
+    //  TimecardApp
+    //
+    //  Created by Damian Rozycki on 12/5/24.
+    //
+
+
 import Foundation
 
 struct NotificationPreferences {
@@ -6,7 +14,7 @@ struct NotificationPreferences {
     var overtimeAlerts: Bool = true
     var scheduleReminders: Bool = false
     
-    // Custom schedule settings
+        // Custom schedule settings
     var workStartHour: Int = 9
     var workStartMinute: Int = 0
     var workEndHour: Int = 17
@@ -15,7 +23,7 @@ struct NotificationPreferences {
     var breakMinute: Int = 0
     var reminderAdvanceTime: Int = 15 // minutes before
     
-    // Computed properties for Date objects
+        // Computed properties for Date objects
     var workStartTime: Date {
         get {
             Calendar.current.date(from: DateComponents(hour: workStartHour, minute: workStartMinute)) ?? Date()
