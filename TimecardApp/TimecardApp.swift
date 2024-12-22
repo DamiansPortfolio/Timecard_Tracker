@@ -10,6 +10,7 @@
         var body: some Scene {
             WindowGroup {
                 ContentView()
+                    .tint(.teal)
             }
         }
     }

@@ -7,13 +7,13 @@
 //
 import Foundation
 
-struct DayTimecard: Identifiable {
+struct HoursPerDay: Identifiable {
     let id: String
     let date: Date
     let hours: Double?
     let status: TimecardStatus?
     
-    var dayName: String {
+    var day: String {
         date.formatted(.dateTime.weekday(.wide))
     }
     

@@ -5,9 +5,9 @@ struct AddTimecardView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: TimecardListViewModel
     @State private var showError = false
+    @State private var showDuplicateError = false
     @State private var showSuccess = false
     @State private var showJobCodePicker = false
-    
     @State private var selectedJobCode: JobCode = .development
     @State private var date = Date()
     @State private var startHour: Hour = .h9am
@@ -21,6 +21,7 @@ struct AddTimecardView: View {
                     Button(action: { showJobCodePicker = true }) {
                         HStack {
                             Text("Job Code")
+                                .foregroundColor(.black)
                             Spacer()
                             Text(selectedJobCode.rawValue)
                         }
@@ -28,8 +29,37 @@ struct AddTimecardView: View {
                 }
                 
                 Section(header: Text("Date and Time")) {
-                    DatePicker("Date", selection: $date, displayedComponents: .date)
-                        .datePickerStyle(GraphicalDatePickerStyle())
+                        // DatePicker with error message if weekend selected
+                    DatePicker(
+                        "Date",
+                        selection: $date,
+                        displayedComponents: .date
+                    )
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .onChange(of: date) {
+                        if isWeekend(date: date) {
+                            showError = true
+                            showDuplicateError = false // Reset duplicate error
+                        } else if isDuplicateTimecard(date: date) {
+                            showDuplicateError = true
+                            showError = false // Reset weekend error
+                        } else {
+                            showError = false
+                            showDuplicateError = false // Reset errors
+                        }
+                    }
+                    
+                    if showError {
+                        Text("Sorry, you cannot select Saturday or Sunday.")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                    }
+                    if showDuplicateError {
+                        Text("A timecard already exists for this date. Please choose a different date or remove the existing timecard to add a new one.")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                    }
+
                     
                     Picker("Start Time", selection: $startHour) {
                         ForEach(Hour.allCases) { hour in
@@ -46,9 +76,13 @@ struct AddTimecardView: View {
                     HStack {
                         Text("Break Duration (hours)")
                         Spacer()
-                        TextField("0.0", value: $breakDuration, formatter: NumberFormatter())
-                            .keyboardType(.decimalPad)
-                            .frame(width: 60)
+                        TextField(
+                            "0.0",
+                            value: $breakDuration,
+                            formatter: NumberFormatter()
+                        )
+                        .keyboardType(.decimalPad)
+                        .frame(width: 60)
                     }
                 }
                 
@@ -61,43 +95,23 @@ struct AddTimecardView: View {
                 }
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .disabled(viewModel.isLoading || !isValidInput())
+                .disabled(viewModel.isLoading || !isValidInput() || showError || !isDateAvailable())
+                
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                }
             }
             .navigationTitle("Add Timecard")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Cancel") { dismiss() }
+                        .bold()
                 }
             }
             .sheet(isPresented: $showJobCodePicker) {
-                NavigationView {
-                    List(JobCode.allCases, id: \.self) { code in
-                        Button(action: {
-                            selectedJobCode = code
-                            showJobCodePicker = false
-                        }) {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(code.description)
-                                    Text(code.rawValue)
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
-                                }
-                                Spacer()
-                                if selectedJobCode == code {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.blue)
-                                }
-                            }
-                        }
-                    }
-                    .navigationTitle("Select Job Code")
-                    .toolbar {
-                        Button("Done") {
-                            showJobCodePicker = false
-                        }
-                    }
-                }
+                JobCodePicker(selectedJobCode: $selectedJobCode)
             }
             .alert("Success", isPresented: $showSuccess) {
                 Button("OK") { dismiss() }
@@ -119,6 +133,13 @@ struct AddTimecardView: View {
         calculateTotalHours() > 0
     }
     
+    private func isDateAvailable() -> Bool {
+        let calendar = Calendar.current // Define calendar here
+        
+            // Check if the selected date already has a timecard
+        return viewModel.timecards.first { calendar.isDate($0.date, inSameDayAs: date) } == nil
+    }
+    
     private func calculateTotalHours() -> Double {
         let startValue = startHour.rawValue
         let endValue = endHour.rawValue
@@ -135,7 +156,10 @@ struct AddTimecardView: View {
     
     private func getDateWithHour(_ hour: Hour) -> Date {
         let calendar = Calendar.current
-        var components = calendar.dateComponents([.year, .month, .day], from: date)
+        var components = calendar.dateComponents(
+            [.year, .month, .day],
+            from: date
+        )
         components.hour = hour.rawValue
         components.minute = 0
         return calendar.date(from: components) ?? date
@@ -153,7 +177,21 @@ struct AddTimecardView: View {
             breakDuration: breakDuration
         )
         
-        // The view will automatically update due to the snapshot listener
+            // The view will automatically update due to the snapshot listener
         showSuccess = true
     }
+    
+        // Check if the date is a weekend (Saturday or Sunday)
+    private func isWeekend(date: Date) -> Bool {
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: date)
+        return weekday == 7 || weekday == 1 // 7 = Saturday, 1 = Sunday
+    }
+    
+    private func isDuplicateTimecard(date: Date) -> Bool {
+        let calendar = Calendar.current
+        // Check if there is an existing timecard for the selected date
+        return viewModel.timecards.contains { calendar.isDate($0.date, inSameDayAs: date) }
+    }
+
 }

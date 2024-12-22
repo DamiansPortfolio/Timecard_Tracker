@@ -1,6 +1,7 @@
 import Foundation
 
-struct Profile {
+struct Profile: Identifiable {
+    var id: String { username } // Use `username` as the unique identifier
     var username: String
     var password: String
     var fname: String
@@ -12,6 +13,7 @@ struct Profile {
     var branch: String
     var department: String
     var location: String
+    var isManager: Bool
 }
 
 enum EditingSection {

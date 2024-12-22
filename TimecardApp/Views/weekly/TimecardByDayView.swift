@@ -1,44 +1,35 @@
-//
-//  TimecardDayView.swift
-//  TimecardApp
-//
-//  Created by Damian Rozycki on 11/14/24.
-//
 
-
-// TimecardDayView.swift
 import SwiftUI
 
-struct TimecardDayView: View {
-    let timecard: DayTimecard
+struct TimecardByDayView: View {
+    let dailyTimecard: TimecardByDay
     
     var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(timecard.dayName)
+                    Text(dailyTimecard.day)
                         .font(.headline)
-                    Text(timecard.dateString)
-                        .font(.caption)
+                    Text(dailyTimecard.dateString)
+                        .font(.subheadline)
                         .foregroundColor(.gray)
                 }
                 
                 Spacer()
                 
                 HStack(spacing: 12) {
-                    if let hours = timecard.hours {
+                    if let hours = dailyTimecard.hours {
                         Text("\(hours, specifier: "%.1f") hrs")
                             .font(.subheadline)
-                            .fontWeight(.medium)
                     }
                     
-                    if let status = timecard.status {
+                    if let status = dailyTimecard.status {
                         StatusBadge(status: status)
                     }
                 }
             }
             .padding()
-            .background(Color.gray.opacity(0.05))
+            .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
         }
     }

@@ -5,7 +5,9 @@ struct ProfileView: View {
     @State private var isEditingProfile = false
     @State private var editingSection: EditingSection = .none
     @State private var showChangePasswordSheet = false
+    @State private var showNotificationSettings = false  // Add this line
     @AppStorage("userId") private var userId: String?
+    @AppStorage("isManager") private var isManager: Bool = false
     
     var body: some View {
         Group {
@@ -23,11 +25,11 @@ struct ProfileView: View {
                                 ProgressView()
                                     .tint(.teal)
                             } else {
-                                // Information Section
+                                    // Information Section
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Information")
-                                            .font(.title)
+                                            .font(.title2)
                                             .bold()
                                             .foregroundColor(.teal)
                                         Spacer()
@@ -36,7 +38,6 @@ struct ProfileView: View {
                                             isEditingProfile.toggle()
                                         }
                                         .buttonStyle(.bordered)
-                                        .tint(.teal)
                                         .bold()
                                     }
                                     ProfileInfoRow(label: "Name:", value: "\(viewModel.firstName) \(viewModel.lastName)")
@@ -48,11 +49,11 @@ struct ProfileView: View {
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
                                 
-                                // Work Details Section
+                                    // Work Details Section
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Work Details")
-                                            .font(.title)
+                                            .font(.title2)
                                             .bold()
                                             .foregroundColor(.teal)
                                         Spacer()
@@ -61,7 +62,6 @@ struct ProfileView: View {
                                             isEditingProfile.toggle()
                                         }
                                         .buttonStyle(.bordered)
-                                        .tint(.teal)
                                         .bold()
                                     }
                                     ProfileInfoRow(label: "Title:", value: viewModel.title)
@@ -74,26 +74,44 @@ struct ProfileView: View {
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
                                 
-                                // Settings Section
+                                    // Settings Section
                                 VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         Text("Settings")
-                                            .font(.title)
+                                            .font(.title2)
                                             .bold()
                                             .foregroundColor(.teal)
                                         Spacer()
                                     }
-                                    Button("Change Password") {
-                                        showChangePasswordSheet = true
+                                    
+                                    Button(action: {
+                                        showNotificationSettings = true
+                                    }) {
+                                        HStack {
+                                            Text("Notifications")
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.gray)
+                                        }
                                     }
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.black)
+                                    
+                                    Button(action: {
+                                        showChangePasswordSheet = true
+                                    }) {
+                                        HStack {
+                                            Text("Change Password")
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.gray)
+                                        }
+                                    }
+                                    .foregroundColor(.black)
                                 }
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(15)
                                 .shadow(radius: 5)
-                                
-                                
                             }
                             
                             if let error = viewModel.errorMessage {
@@ -115,7 +133,6 @@ struct ProfileView: View {
                         }
                         .padding()
                     }
-//                    .background(Color.teal.opacity(0.2))
                     .navigationTitle("Profile")
                     .sheet(isPresented: $isEditingProfile) {
                         EditProfileView(viewModel: viewModel, editingSection: editingSection)
@@ -123,6 +140,9 @@ struct ProfileView: View {
                     }
                     .sheet(isPresented: $showChangePasswordSheet) {
                         ChangePasswordView(viewModel: viewModel)
+                    }
+                    .sheet(isPresented: $showNotificationSettings) {
+                        NotificationSettingsView()
                     }
                 }
             } else {

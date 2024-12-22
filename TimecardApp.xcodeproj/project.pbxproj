@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+    0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */; };
+		062700FA2CE6E6360097B7E2 /* TimecardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062700ED2CE6E6360097B7E2 /* TimecardApp.swift */; };
 		065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560F12CC9A21C003A441F /* LoginViewModel.swift */; };
 		065560FC2CCB23CD003A441F /* JobCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FB2CCB23CD003A441F /* JobCode.swift */; };
 		065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FF2CCD75B8003A441F /* ProfileViewModel.swift */; };
 		065561022CCD75CA003A441F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065561012CCD75CA003A441F /* Profile.swift */; };
-		8E95679A2CE4485B00A692C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */; };
+		067FFF042CE943C100B07CFA /* EmployeeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */; };
 		8E95679D2CE4490500A692C8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679C2CE4490500A692C8 /* FirebaseAnalytics */; };
 		8E95679F2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8E95679E2CE4490500A692C8 /* FirebaseAnalyticsOnDeviceConversion */; };
 		8E9567A12CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8E9567A02CE4490500A692C8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -40,37 +42,48 @@
 		8E9567D22CE568A600A692C8 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8E9567D12CE568A600A692C8 /* FirebaseAppCheck */; };
 		8E9567D42CE56E4F00A692C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */; };
 		8E9567DE2CE634D100A692C8 /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567DD2CE634D100A692C8 /* Hour.swift */; };
-		8E9567E52CE6669A00A692C8 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567E42CE6669700A692C8 /* CalendarViewModel.swift */; };
-		8E9567EF2CE6BFA400A692C8 /* DayTimecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567EE2CE6BFA400A692C8 /* DayTimecard.swift */; };
-		8E9567F42CE6C0DE00A692C8 /* CalendarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567F32CE6C0D900A692C8 /* CalendarExtensions.swift */; };
+		8E9567E52CE6669A00A692C8 /* WeeklyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */; };
+		8E9567EF2CE6BFA400A692C8 /* TimecardByDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9567EE2CE6BFA400A692C8 /* TimecardByDay.swift */; };
+		8E95692B2CEA696500A692C8 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95692A2CEA696500A692C8 /* Manager.swift */; };
+		8E95692D2CEA698300A692C8 /* ManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95692C2CEA698300A692C8 /* ManagerViewModel.swift */; };
 		8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B332CB0AA82000C94FB /* Assets.xcassets */; };
-		8EC38B372CB0AA82000C94FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */; };
 		8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */; };
 		8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B482CB0ABCC000C94FB /* Timecard.swift */; };
 		8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */; };
+		8EF1F0F62D02ABA0007E9C46 /* NotificationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF1F0F52D02ABA0007E9C46 /* NotificationPreferences.swift */; };
+		8EF1F0F82D02ABB0007E9C46 /* NotificationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF1F0F72D02ABB0007E9C46 /* NotificationCategory.swift */; };
+		8EF1F0FA2D02ABC1007E9C46 /* NotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF1F0F92D02ABC1007E9C46 /* NotificationSettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+    0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		062700ED2CE6E6360097B7E2 /* TimecardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardApp.swift; sourceTree = "<group>"; };
 		065560F12CC9A21C003A441F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		065560FB2CCB23CD003A441F /* JobCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCode.swift; sourceTree = "<group>"; };
 		065560FF2CCD75B8003A441F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		065561012CCD75CA003A441F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailViewModel.swift; sourceTree = "<group>"; };
 		8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9567DD2CE634D100A692C8 /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
-		8E9567E42CE6669700A692C8 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
-		8E9567EE2CE6BFA400A692C8 /* DayTimecard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimecard.swift; sourceTree = "<group>"; };
-		8E9567F32CE6C0D900A692C8 /* CalendarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensions.swift; sourceTree = "<group>"; };
+		8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewModel.swift; sourceTree = "<group>"; };
+		8E9567EE2CE6BFA400A692C8 /* TimecardByDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardByDay.swift; sourceTree = "<group>"; };
+		8E95692A2CEA696500A692C8 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		8E95692C2CEA698300A692C8 /* ManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerViewModel.swift; sourceTree = "<group>"; };
 		8EC38B2C2CB0AA80000C94FB /* TimecardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimecardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC38B332CB0AA82000C94FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardListViewModel.swift; sourceTree = "<group>"; };
 		8EC38B482CB0ABCC000C94FB /* Timecard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timecard.swift; sourceTree = "<group>"; };
 		8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCodeListViewModel.swift; sourceTree = "<group>"; };
+		8EF1F0F52D02ABA0007E9C46 /* NotificationPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferences.swift; sourceTree = "<group>"; };
+		8EF1F0F72D02ABB0007E9C46 /* NotificationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCategory.swift; sourceTree = "<group>"; };
+		8EF1F0F92D02ABC1007E9C46 /* NotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewModel.swift; sourceTree = "<group>"; };
+		8EF1F1022D02ACD6007E9C46 /* TimecardApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimecardApp.entitlements; sourceTree = "<group>"; };
+		8EF1F1032D02ACDE007E9C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		06FB23E12CD58FBE00F30DD7 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		8EF1F0FF2D02AC4C007E9C46 /* Utilities */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utilities; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,14 +123,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E9567F02CE6C03A00A692C8 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8E9567F32CE6C0D900A692C8 /* CalendarExtensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		8EC38B232CB0AA80000C94FB = {
 			isa = PBXGroup;
 			children = (
@@ -137,30 +142,27 @@
 		8EC38B2E2CB0AA80000C94FB /* TimecardApp */ = {
 			isa = PBXGroup;
 			children = (
+				8EF1F1032D02ACDE007E9C46 /* Info.plist */,
+				8EF1F1022D02ACD6007E9C46 /* TimecardApp.entitlements */,
+				8EF1F0FF2D02AC4C007E9C46 /* Utilities */,
 				8EC38B3F2CB0AA9C000C94FB /* Models */,
 				8EC38B402CB0AAA7000C94FB /* ViewModels */,
 				8EC38B412CB0AAAC000C94FB /* Services */,
 				8EC38B332CB0AA82000C94FB /* Assets.xcassets */,
-				8E9567F02CE6C03A00A692C8 /* Extensions */,
-				8EC38B352CB0AA82000C94FB /* Preview Content */,
 				06FB23E12CD58FBE00F30DD7 /* Views */,
-				8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */,
+        8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */,
+				062700ED2CE6E6360097B7E2 /* TimecardApp.swift */,
 			);
 			path = TimecardApp;
-			sourceTree = "<group>";
-		};
-		8EC38B352CB0AA82000C94FB /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				8EC38B362CB0AA82000C94FB /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		8EC38B3F2CB0AA9C000C94FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8E9567EE2CE6BFA400A692C8 /* DayTimecard.swift */,
+				8EF1F0F72D02ABB0007E9C46 /* NotificationCategory.swift */,
+				8EF1F0F52D02ABA0007E9C46 /* NotificationPreferences.swift */,
+				8E9567EE2CE6BFA400A692C8 /* TimecardByDay.swift */,
+				8E95692A2CEA696500A692C8 /* Manager.swift */,
 				8E9567DD2CE634D100A692C8 /* Hour.swift */,
 				065561012CCD75CA003A441F /* Profile.swift */,
 				065560FB2CCB23CD003A441F /* JobCode.swift */,
@@ -172,9 +174,12 @@
 		8EC38B402CB0AAA7000C94FB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8EF1F0F92D02ABC1007E9C46 /* NotificationSettingsViewModel.swift */,
+				067FFF032CE943C100B07CFA /* EmployeeDetailViewModel.swift */,
+				8E95692C2CEA698300A692C8 /* ManagerViewModel.swift */,
 				8E9567D32CE56E4F00A692C8 /* AppDelegate.swift */,
 				065560FF2CCD75B8003A441F /* ProfileViewModel.swift */,
-				8E9567E42CE6669700A692C8 /* CalendarViewModel.swift */,
+				8E9567E42CE6669700A692C8 /* WeeklyViewModel.swift */,
 				065560F12CC9A21C003A441F /* LoginViewModel.swift */,
 				8EC38B4E2CB0AD24000C94FB /* JobCodeListViewModel.swift */,
 				8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */,
@@ -206,6 +211,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				06FB23E12CD58FBE00F30DD7 /* Views */,
+				8EF1F0FF2D02AC4C007E9C46 /* Utilities */,
 			);
 			name = TimecardApp;
 			productName = TimecardApp;
@@ -253,7 +259,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EC38B372CB0AA82000C94FB /* Preview Assets.xcassets in Resources */,
 				8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */,
 				8E95679A2CE4485B00A692C8 /* GoogleService-Info.plist in Resources */,
 			);
@@ -268,14 +273,20 @@
 			files = (
 				065561022CCD75CA003A441F /* Profile.swift in Sources */,
 				065560FC2CCB23CD003A441F /* JobCode.swift in Sources */,
-				8E9567E52CE6669A00A692C8 /* CalendarViewModel.swift in Sources */,
+				8EF1F0FA2D02ABC1007E9C46 /* NotificationSettingsViewModel.swift in Sources */,
+				8E9567E52CE6669A00A692C8 /* WeeklyViewModel.swift in Sources */,
 				8E9567DE2CE634D100A692C8 /* Hour.swift in Sources */,
-				8E9567F42CE6C0DE00A692C8 /* CalendarExtensions.swift in Sources */,
+				067FFF042CE943C100B07CFA /* EmployeeDetailViewModel.swift in Sources */,
 				065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */,
-				8E9567EF2CE6BFA400A692C8 /* DayTimecard.swift in Sources */,
+				8EF1F0F62D02ABA0007E9C46 /* NotificationPreferences.swift in Sources */,
+				8E9567EF2CE6BFA400A692C8 /* TimecardByDay.swift in Sources */,
+				8E95692D2CEA698300A692C8 /* ManagerViewModel.swift in Sources */,
 				065561002CCD75B8003A441F /* ProfileViewModel.swift in Sources */,
 				8EC38B492CB0ABCC000C94FB /* Timecard.swift in Sources */,
+				8EF1F0F82D02ABB0007E9C46 /* NotificationCategory.swift in Sources */,
 				8EC38B4F2CB0AD24000C94FB /* JobCodeListViewModel.swift in Sources */,
+				062700FA2CE6E6360097B7E2 /* TimecardApp.swift in Sources */,
+				8E95692B2CEA696500A692C8 /* Manager.swift in Sources */,
 				8E9567D42CE56E4F00A692C8 /* AppDelegate.swift in Sources */,
 				8EC38B472CB0ABB7000C94FB /* TimecardListViewModel.swift in Sources */,
 			);
@@ -408,6 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TimecardApp/TimecardApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
@@ -415,6 +427,7 @@
 				ENABLE_PREVIEWS = YES;
 				FIRAppCheckDebugToken = "6C835E8F-BB58-46D6-90FD-F2C69C843ABA";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimecardApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -438,6 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TimecardApp/TimecardApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimecardApp/Preview Content\"";
@@ -445,6 +459,7 @@
 				ENABLE_PREVIEWS = YES;
 				FIRAppCheckDebugToken = "6C835E8F-BB58-46D6-90FD-F2C69C843ABA";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimecardApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -8,21 +8,18 @@
 import FirebaseFirestore
 import SwiftUI
 
-class CalendarViewModel: ObservableObject {
-        // Published properties
+class WeeklyViewModel: ObservableObject {
     @Published var timecards: [Timecard] = []
     @Published var currentWeekIndex: Int = 0
-    @Published var currentWeekTimecards: [DayTimecard] = []
+    @Published var currentWeekTimecards: [TimecardByDay] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-        // Private properties
     private let calendar = Calendar.current
     private var currentDate = Date()
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
     
-        // Computed properties
     var totalWeeks: Int {
         let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: Date())) ?? Date()
         let endOfFutureRange = calendar.date(byAdding: .month, value: 3, to: Date()) ?? Date()
@@ -55,8 +52,7 @@ class CalendarViewModel: ObservableObject {
         currentWeekTimecards.compactMap { $0.hours }.reduce(0, +)
     }
 
-    
-        // Initialization and cleanup
+            // Initialization and cleanup
     init() {
         setupTimecardListener()
         updateCurrentWeek()
@@ -66,7 +62,6 @@ class CalendarViewModel: ObservableObject {
         listener?.remove()
     }
     
-        // Public methods
     func nextWeek() {
         // Calculate end of future range
         let endOfFutureRange = calendar.date(byAdding: .month, value: 3, to: Date()) ?? Date()
@@ -93,7 +88,6 @@ class CalendarViewModel: ObservableObject {
         setupTimecardListener()
     }
     
-        // Private methods
     private func updateCurrentWeek() {
         guard let weekStart = calendar.date(
             from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
@@ -111,7 +105,7 @@ class CalendarViewModel: ObservableObject {
             let date = calendar.date(byAdding: .day, value: dayOffset, to: mondayDate) ?? mondayDate
             let timecard = timecards.first { calendar.isDate($0.date, inSameDayAs: date) }
             
-            return DayTimecard(
+            return TimecardByDay(
                 id: UUID().uuidString,
                 date: date,
                 hours: timecard?.totalHours,
@@ -156,10 +150,45 @@ class CalendarViewModel: ObservableObject {
                     self.updateCurrentWeek()
                     self.isLoading = false
                     
-#if DEBUG
                     print("Calendar updated: \(self.timecards.count) timecards loaded")
-#endif
                 }
             }
     }
+    
+    func submitAllTimecards() {
+        isLoading = true
+        errorMessage = nil
+
+        let group = DispatchGroup()
+
+        let currentWeekStart = calendar.date(
+            from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)
+        )
+
+        for timecard in timecards.filter({
+            guard let timecardDate = calendar.date(from: calendar.dateComponents([.year, .month, .day], from: $0.date)) else {
+                return false
+            }
+            return calendar.isDate(timecardDate, equalTo: currentWeekStart ?? Date(), toGranularity: .weekOfYear) && $0.status == .draft
+        }) {
+            group.enter()
+
+            let docRef = db.collection("timecards").document(timecard.id)
+            var updatedData = timecard.firestoreData
+            updatedData["status"] = TimecardStatus.submitted.rawValue
+
+            docRef.updateData(updatedData) { error in
+                if let error = error {
+                    self.errorMessage = "Error submitting timecard: \(error.localizedDescription)"
+                }
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            self.isLoading = false
+            self.refreshData()
+        }
+    }
+
 }

@@ -1,24 +1,13 @@
-//
-//  ContentView.swift
-//  TimecardApp
-//
-//  Created by Damian Rozycki on 10/4/24.
-//
 import SwiftUI
 
 struct ContentView: View {
     @AppStorage("userId") private var userId: String?
+    @AppStorage("isManager") private var isManager: Bool = false
     
     init() {
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
         tabBarAppearance.backgroundColor = UIColor.white
-        
-        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.gray
-        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
-        
-        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.systemTeal
-        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.systemTeal]
         
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
@@ -28,9 +17,16 @@ struct ContentView: View {
         Group {
             if userId != nil {
                 TabView {
-                    CalendarView()
+                    if isManager {
+                        ManagerDashboardView()
+                            .tabItem {
+                                Label("Team", systemImage: "person.3.fill") // Changed icon to be more manager-like
+                            }
+                    }
+                    
+                    WeeklySummaryView()
                         .tabItem {
-                            Label("Calendar", systemImage: "person")
+                            Label("Weekly", systemImage: "calendar")
                         }
                     
                     TimecardListView()
@@ -42,8 +38,6 @@ struct ContentView: View {
                         .tabItem {
                             Label("Profile", systemImage: "person")
                         }
-                    
-                    
                 }
             } else {
                 LoginView()

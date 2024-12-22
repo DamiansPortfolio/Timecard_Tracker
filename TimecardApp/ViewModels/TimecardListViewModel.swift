@@ -24,7 +24,6 @@ class TimecardListViewModel: ObservableObject {
             // Fetch user profile from Firestore
         db.collection("users").document(userId).getDocument { [weak self] document, error in
             if let document = document, document.exists {
-                    // Get the first and last name from the user's profile
                 let firstName = document["fname"] as? String ?? ""
                 let lastName = document["lname"] as? String ?? ""
                 
@@ -72,7 +71,7 @@ class TimecardListViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         
-        let totalHours = endTime.timeIntervalSince(startTime) / 3600 - breakDuration
+        let totalHours = calculateTotalHours(startTime: startTime, endTime: endTime, breakDuration: breakDuration)
         
             // Create timecard using the employee info from profile
         let newTimecard = Timecard(
@@ -104,7 +103,6 @@ class TimecardListViewModel: ObservableObject {
             }
         }
     }
-    
     
     func deleteTimecard(_ timecard: Timecard) {
         isLoading = true
@@ -152,7 +150,7 @@ class TimecardListViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         
-        let totalHours = endTime.timeIntervalSince(startTime) / 3600 - breakDuration
+        let totalHours = calculateTotalHours(startTime: startTime, endTime: endTime, breakDuration: breakDuration)
         
         let updatedTimecard = Timecard(
             id: timecard.id,
@@ -183,11 +181,10 @@ class TimecardListViewModel: ObservableObject {
     }
     
     func sortByDateDescending() {
-        
         filteredTimecards.sort { $0.date < $1.date }
     }
+    
     func sortByDateAscending() {
-        
         filteredTimecards.sort { $0.date > $1.date }
     }
     

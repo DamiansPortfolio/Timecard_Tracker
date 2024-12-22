@@ -34,6 +34,7 @@ class ProfileViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "userEmail")
         UserDefaults.standard.removeObject(forKey: "userName")
         UserDefaults.standard.removeObject(forKey: "userId")
+        UserDefaults.standard.removeObject(forKey: "isManager") // Add this line
         
             // Clear local user data
         clearUserData()
@@ -167,7 +168,7 @@ class ProfileViewModel: ObservableObject {
                 
                 if document.exists {
                     await MainActor.run {
-                            // Map Firestore data to our Profile properties
+                            // Existing mappings...
                         self.firstName = document["fname"] as? String ?? "Unknown"
                         self.lastName = document["lname"] as? String ?? "Unknown"
                         self.middleName = document["mname"] as? String ?? "Unknown"
@@ -178,6 +179,11 @@ class ProfileViewModel: ObservableObject {
                         self.phone = document["phone"] as? String ?? "Unknown"
                         self.title = document["title"] as? String ?? "Unknown"
                         self.location = document["location"] as? String ?? "Unknown"
+                        
+                            // Add this line to store isManager status
+                        if let isManager = document["isManager"] as? Bool {
+                            UserDefaults.standard.set(isManager, forKey: "isManager")
+                        }
                         
                         self.isLoading = false
                     }

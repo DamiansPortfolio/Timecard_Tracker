@@ -17,16 +17,9 @@ struct TimecardListView: View {
                     }
                     .onDelete(perform: deleteTimecard)
                 }
-//                .listStyle(.inset)
-//                .cornerRadius(15)
-//                .padding(40)
-                
-                
             }
             .navigationTitle("Timecards")
-            .background(Color.teal.opacity(0.3))
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Menu {
                         Button("Most Recent") {
@@ -37,7 +30,6 @@ struct TimecardListView: View {
                         }
                     } label: {
                         Image(systemName:"arrow.up.arrow.down")
-                            .foregroundColor(.teal)
                             .bold()
                     }
                 }
@@ -62,26 +54,20 @@ struct TimecardListView: View {
                     } label: {
                         Image(systemName: "line.3.horizontal.decrease")
                             .bold()
-                            .foregroundColor(.teal)
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                    Button("Add") {
                         showAddTimecardSheet.toggle() // Present the sheet
-                    }) {
-                        Text("Add")
-                            .bold()
-                            .foregroundColor(.white)
-                    }
-                    .sheet(isPresented: $showAddTimecardSheet) {
-                        AddTimecardView(viewModel: viewModel)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.teal)
+                    .bold()
                 }
             }
-            
+        }
+        .sheet(isPresented: $showAddTimecardSheet) {
+            AddTimecardView(viewModel: viewModel)
         }
     }
     
@@ -98,7 +84,7 @@ struct TimecardRowView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(timecard.date, style: .date)
+            Text(timecard.date.formatted(.dateTime.weekday(.wide).month(.wide).day().year()))
                 .font(.headline)
             Text("Hours: \(timecard.totalHours, specifier: "%.2f")")
                 .font(.subheadline)
