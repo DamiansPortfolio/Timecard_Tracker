@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */; };
+    0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */; };
 		062700FA2CE6E6360097B7E2 /* TimecardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062700ED2CE6E6360097B7E2 /* TimecardApp.swift */; };
 		065560F22CC9A223003A441F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560F12CC9A21C003A441F /* LoginViewModel.swift */; };
 		065560FC2CCB23CD003A441F /* JobCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065560FB2CCB23CD003A441F /* JobCode.swift */; };
@@ -56,7 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+    0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		062700ED2CE6E6360097B7E2 /* TimecardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecardApp.swift; sourceTree = "<group>"; };
 		065560F12CC9A21C003A441F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		065560FB2CCB23CD003A441F /* JobCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCode.swift; sourceTree = "<group>"; };
@@ -147,9 +147,10 @@
 				8EF1F0FF2D02AC4C007E9C46 /* Utilities */,
 				8EC38B3F2CB0AA9C000C94FB /* Models */,
 				8EC38B402CB0AAA7000C94FB /* ViewModels */,
+				8EC38B412CB0AAAC000C94FB /* Services */,
 				8EC38B332CB0AA82000C94FB /* Assets.xcassets */,
 				06FB23E12CD58FBE00F30DD7 /* Views */,
-				0627002D2CE65DE40097B7E2 /* GoogleService-Info.plist */,
+        8E9567992CE4485B00A692C8 /* GoogleService-Info.plist */,
 				062700ED2CE6E6360097B7E2 /* TimecardApp.swift */,
 			);
 			path = TimecardApp;
@@ -184,6 +185,13 @@
 				8EC38B462CB0ABB7000C94FB /* TimecardListViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8EC38B412CB0AAAC000C94FB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EC38B342CB0AA82000C94FB /* Assets.xcassets in Resources */,
-				0627002E2CE65DE40097B7E2 /* GoogleService-Info.plist in Resources */,
+				8E95679A2CE4485B00A692C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
