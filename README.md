@@ -82,7 +82,7 @@ cd Timecard_Tracker
 
 1. Open the project in Xcode:
 ```bash
-open Timecard_Tracker.xcodeproj
+open TimecardApp.xcodeproj
 ```
 
 2. Install development tools (if needed):
